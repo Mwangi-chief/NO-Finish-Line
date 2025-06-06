@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate | NO FINISH LINE Nairobi</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .donation-option {
@@ -128,6 +129,7 @@
         
         <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
             <div class="md:flex">
+                <form id="donation-form">
                 <div class="p-8 w-full">
                     <!-- Donation Amounts -->
                     <h3 class="text-xl font-semibold mb-4">Select Amount (KES)</h3>
@@ -192,6 +194,7 @@
                         Donate Now
                     </button>
                 </div>
+                </form>
             </div>
         </div>
     </section>
@@ -356,15 +359,8 @@
                 mobileMenu.classList.add("hidden");
             };
 
-            // Donation amount selection
-            const donationOptions = document.querySelectorAll('.donation-option');
-            donationOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    donationOptions.forEach(opt => opt.classList.remove('active', 'bg-[#E52D2F]'));
-                    this.classList.add('active', 'bg-[#E52D2F]');
-                });
-            });
         });
     </script>
+<script src="js/donation.js"></script>
 </body>
 </html>
