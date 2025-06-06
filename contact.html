@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Us - No Finish Line Nairobi">
+    <title>Contact Us | No Finish Line Nairobi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-hero {
+            background-image: url('asset/hero6.png');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 10;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Register</a>
+            <a href="Donation.html">Donate</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-[#E52D2F] text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+        });
+    </script>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero relative">
+        <div class="overlay"></div>
+        <div class="hero-text">Get in Touch with Us</div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-12 px-4 md:px-16 lg:px-24">
+        <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+        <form class="space-y-4 max-w-md mx-auto">
+            <input type="text" placeholder="Your Name" class="w-full p-3 border rounded">
+            <input type="email" placeholder="Your Email" class="w-full p-3 border rounded">
+            <textarea placeholder="Your Message" class="w-full p-3 border rounded" rows="5"></textarea>
+            <button type="submit" class="bg-[#E52D2F] text-white px-4 py-2 rounded w-full">Send Message</button>
+        </form>
+
+        <div class="mt-8">
+            <h3 class="text-xl font-bold">Other Ways to Reach Us</h3>
+            <p>Email: info@nofinishlinenairobi.org</p>
+            <p>Phone: +254 112155383,+254 708061231</p>
+            <p>Address: Uhuru Gardens, Nairobi, Kenya</p>
+        </div>
+    </section>
+<!-- Footer Section -->
+<footer class="bg-[#E52D2F] text-white py-8 mt-12">
+    <div class="container mx-auto px-4 md:px-16 lg:px-24">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <!-- Logo and Description -->
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h2 class="text-2xl font-bold">No Finish Line Marathon</h2>
+                <p class="mt-2 text-sm text-gray-300">Keep Moving,Never quit or give up</p>
+            </div>
+            <!-- Social Media Links -->
+            <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+        </div>
+
+        <hr class="my-4 border-gray-600">
+
+        <!-- Copyright -->
+        <div class="text-center text-sm text-gray-400">
+            <p>&copy; 2025 No Finish Line Marathon. All rights reserved. | Designed by No Finish line Nairobi team</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

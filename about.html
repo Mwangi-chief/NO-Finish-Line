@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About the Nairobi Marathon - Learn more about our mission, values, and impact.">
+    <title>About Us | Nairobi Marathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            position: relative;
+            height: 350px;
+            background-image: url('asset/hero2.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .angled-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #E52D2F;
+            clip-path: polygon(0 0, 80% 0, 60% 100%, 0% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 30px;
+        }
+
+        header {
+            position: relative;
+            z-index: 50;
+        }
+
+        .image-gallery img {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Dropdown menu styles */
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #E52D2F;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            color: white;
+            padding: 12px 16px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #c22525;
+        }
+
+        /* Content sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #E52D2F;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <div class="nav-item">
+                <a href="about.html" class="hover:underline">About</a>
+                <div class="dropdown-menu">
+                    <a href="#vision">Vision</a>
+                    <a href="#mission">Mission</a>
+                    <a href="#why-mental-health">Why Mental Health</a>
+                    <a href="#history">History</a>
+                </div>
+            </div>
+            <a href="register.html">Register</a>
+            <a href="Donation.html">Donate</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-[#E52D2F] text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+
+    <!-- Hero Section with Angled Overlay -->
+    <section class="hero-section relative">
+        <div class="angled-overlay"></div>
+    </section>
+
+    <!-- Simplified About Content -->
+    <section class="py-12 px-4 md:px-16 lg:px-24 max-w-6xl mx-auto">
+        <div class="content-section" id="vision">
+            <h2>Our Vision</h2>
+            <p>We envision a Kenya where mental health is prioritized and every child with mental health challenges has access to quality care, education, and opportunities to thrive through community support and sports.</p>
+            <div class="image-gallery grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <img src="asset/image7.png" alt="Running Event" class="rounded-lg">
+                <img src="asset/image8.png" alt="Community Support" class="rounded-lg">
+            </div>
+        </div>
+
+        <div class="content-section" id="mission">
+            <h2>Our Mission</h2>
+            <p>To raise KES 100 million to build and equip a Children's Mental Health Education and Sports Centre at St. Catherine Special School in Busia, while reducing stigma through community engagement.</p>
+        </div>
+
+        <div class="content-section" id="why-mental-health">
+            <h2>Why Mental Health Matters</h2>
+            <p>1 in 4 Kenyans experience mental health conditions, yet 75% lack access to care. Through running, we're breaking stigma and providing critical resources for children who need them most.</p>
+            <div class="image-gallery grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <img src="asset/image9.png" alt="Team Support" class="rounded-lg">
+                <img src="asset/image10.png" alt="Charity and Impact" class="rounded-lg">
+            </div>
+        </div>
+
+        <div class="content-section" id="history">
+            <h2>Our History</h2>
+            <p>Founded in Monaco in 1999, NO FINISH LINE has grown into a global movement. Nairobi makes history in 2025 as the first African host city, continuing our tradition of combining sport with social impact.</p>
+            <div class="image-gallery grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <img src="asset/image11.png" alt="Historic Marathon" class="rounded-lg">
+                <img src="asset/image12.png" alt="Runners Community" class="rounded-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#E52D2F] text-white py-8 mt-12">
+        <div class="container mx-auto px-4 md:px-16 lg:px-24">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo and Description -->
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl font-bold">Nairobi Marathon</h2>
+                    <p class="mt-2 text-sm text-gray-300">Join the run, support a cause, and experience Nairobi's vibrant spirit.</p>
+                </div>
+                <!-- Social Media Links -->
+                <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+            </div>
+
+            <hr class="my-4 border-gray-600">
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-400">
+                <p>&copy; 2025 Nairobi Marathon. All rights reserved. | Designed by Nairobi Marathon Team</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

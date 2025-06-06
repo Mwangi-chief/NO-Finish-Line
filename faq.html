@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently Asked Questions - Nairobi Marathon">
+    <title>FAQ | Nairobi Marathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+        }
+        .faq-item h3 {
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            color: #4a5568;
+        }
+        .hero-bg {
+            background-image: url('asset/hero4.png');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+        }
+        .search-bar {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Register</a>
+            <a href="Donation.html">Donate</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-[#E52D2F] text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+        });
+    </script>
+    <!-- Hero Section with Search Bar -->
+    <section class="hero-bg relative">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative text-center z-10">
+            <h1 class="text-4xl font-bold mb-4">HELP CENTER</h1>
+            <div class="search-bar flex items-center">
+                <input type="text" placeholder="Search the help center..." class="text-gray-700">
+                <button class="text-[#E52D2F]"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-12 px-4 md:px-16 lg:px-24">
+        <h2 class="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">What is NO FINISH LINE (NFL)? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>NO FINISH LINE (NFL) is a unique charity sports festival combining endurance running, wellness, and community activism to support children living with mental impairments. Founded in Monaco in 1999 under the patronage of HSH Prince Albert II, NFL has grown into a global series of events uniting participants worldwide to raise funds and awareness for vulnerable children.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">When and where is the Nairobi NFL event? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>The inaugural NFL Nairobi will take place from September 4-7, 2025 at Uhuru Gardens. The 72-hour endurance challenge begins at 2:00 PM on September 4th and concludes at 2:00 PM on September 7th.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">How does the fundraising work? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>For every kilometer you run or walk during the 72-hour event, sponsors and donors contribute funds to support children's mental health initiatives. You can also collect direct donations through your personal fundraising page. All proceeds go to selected Kenyan charities supporting children with mental impairments.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">Who can participate? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>The event is open to everyone - individuals, families, corporate teams, schools, and community groups. Participants can join as runners, walkers, or volunteers. There are no speed requirements or minimum distance obligations.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">What are the registration fees? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>Registration fees vary by participant category:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Adults (18+): KES 3,000</li>
+                    <li>Youth (12-17): KES 1,500</li>
+                    <li>Children under 12: Free (must be accompanied by registered adult)</li>
+                    <li>Corporate teams (5+ members): 10% discount</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">What should I bring to the event? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>Essential items include:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Comfortable running/walking shoes</li>
+                    <li>Weather-appropriate athletic clothing</li>
+                    <li>Refillable water bottle</li>
+                    <li>Sun protection (hat, sunscreen)</li>
+                    <li>Personal medications if needed</li>
+                    <li>ID and registration confirmation</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">Are there facilities at the venue? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>Yes, Uhuru Gardens will have:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Medical tents with first aid</li>
+                    <li>Hydration stations</li>
+                    <li>Rest areas with seating</li>
+                    <li>Restroom facilities</li>
+                    <li>Secure bag storage</li>
+                    <li>Food and beverage vendors</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">How can my company get involved? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>Corporate participation options include:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Sponsoring the event at various levels</li>
+                    <li>Entering employee teams</li>
+                    <li>Matching employee fundraising</li>
+                    <li>Providing in-kind donations</li>
+                    <li>Volunteering during the event</li>
+                </ul>
+                Contact our corporate partnerships team for more information.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">How are the funds distributed? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>100% of donations go directly to our partner charities supporting children with mental health challenges in Kenya. The funds are allocated to:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Treatment and therapy programs</li>
+                    <li>Educational support</li>
+                    <li>Family counseling services</li>
+                    <li>Community awareness initiatives</li>
+                    <li>Facility improvements</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">Can I volunteer instead of running? <i class="fas fa-chevron-down"></i></h3>
+            <div class="faq-answer">
+                <p>Absolutely! We need hundreds of volunteers for various roles including:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>Course marshals</li>
+                    <li>Registration assistants</li>
+                    <li>Hydration station staff</li>
+                    <li>Medical support</li>
+                    <li>Cheer teams</li>
+                    <li>Set-up/clean-up crews</li>
+                </ul>
+                Visit our Volunteer page to sign up.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for FAQ Toggle -->
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    </script>
+<!-- Footer Section -->
+<footer class="bg-[#E52D2F] text-white py-8 mt-12">
+    <div class="container mx-auto px-4 md:px-16 lg:px-24">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <!-- Logo and Description -->
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h2 class="text-2xl font-bold">Nairobi Marathon</h2>
+                <p class="mt-2 text-sm text-gray-300">Join the run, support a cause, and experience Nairobi's vibrant spirit.</p>
+            </div>
+            <!-- Social Media Links -->
+            <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+        </div>
+
+        <hr class="my-4 border-gray-600">
+
+        <!-- Copyright -->
+        <div class="text-center text-sm text-gray-400">
+            <p>&copy; 2025 Nairobi Marathon. All rights reserved. | Designed by Nairobi Marathon Team</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

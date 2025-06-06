@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About the Nairobi Marathon - Learn more about our mission, values, and impact.">
+    <title>Home | No Finish Line Nairobi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            position: relative;
+            height: 350px;
+            background-image: url('https://source.unsplash.com/1600x900/?nairobi,marathon');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .angled-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #E52D2F;  /* Blue overlay */
+            clip-path: polygon(0 0, 80% 0, 60% 100%, 0% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 30px;
+        }
+
+        .hero-text {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        header {
+            position: relative;
+            z-index: 50; /* Ensure header is always above hero section */
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Register</a>
+            <a href="Donation.html">Donate</a>
+            <a href="Volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-blue-900 text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="Volunteer.html" class="block py-2" onclick="closeMenu()">Volunteer</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+        });
+    </script>
+
+   <!-- Hero Image Section with Donate Button -->
+<section class="relative">
+    <img src="asset/hero1.png" alt="Nairobi Marathon 2025" class="w-full h-[85vh] object-cover object-center">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white px-4">
+        <h2 class="text-5xl font-bold mb-4">No Finish Line Nairobi</h2>
+        <p class="text-xl mb-6">Keep Moving,Never Quit or Give up</p>
+        <div id="countdown" class="text-3xl font-bold text-yellow-400 mb-4">
+            <span id="days"></span> Days 
+            <span id="hours"></span> Hours 
+            <span id="minutes"></span> Minutes 
+            <span id="seconds"></span> Seconds
+        </div>
+        <div class="flex space-x-4">
+            <a href="register.html" class="bg-yellow-500 px-6 py-3 rounded font-semibold hover:bg-yellow-600">Register Now</a>
+            <button onclick="openPaymentMethod()" class="bg-yellow-500 text-white-900 px-6 py-3 rounded-md font-bold hover:bg-yellow-600">Donate Now</button>
+        </div>
+    </div>
+</section>
+
+<!-- Countdown Timer Script -->
+<script>
+    // Set the date we're counting down to (September 4, 2025)
+    const countDownDate = new Date("Sep 4, 2025 00:00:00").getTime();
+
+    // Update the count down every 1 second
+    const x = setInterval(function() {
+        // Get today's date and time
+        const now = new Date().getTime();
+        
+        // Find the distance between now and the count down date
+        const distance = countDownDate - now;
+        
+        // Time calculations for days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Output the result in the countdown element
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+        
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "EVENT STARTED!";
+        }
+    }, 1000);
+</script>
+
+<!-- JavaScript for Payment Method -->
+<script>
+    function openPaymentMethod() {
+        // Redirect to local donate.html page
+        window.location.href = "Donation.html";
+    }
+</script>
+
+    <!-- Image Gallery -->
+    <section class="py-12 px-4 md:px-16 lg:px-24">
+        <h3 class="text-3xl font-bold mb-6 text-center">Event Highlights</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <!-- Image Card 1 -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                <img src="asset/image1.png" alt="Event Image 1" class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-blue-800 font-semibold uppercase text-sm">Stories</p>
+                    <h4 class="text-lg font-bold">No Finish Line Nairobi: A Journey of Strength</h4>
+                    <p class="text-gray-700 mt-2">Join us in celebrating the Nairobi Marathon. See the best moments.</p>
+                </div>
+            </div>
+
+            <!-- Image Card 2 -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                <img src="asset/image2.png" alt="Event Image 2" class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-blue-800 font-semibold uppercase text-sm">Stories</p>
+                    <h4 class="text-lg font-bold">Running for Health: Marathon Moments</h4>
+                    <p class="text-gray-700 mt-2">Discover inspiring stories from runners who participated in the marathon.</p>
+                </div>
+            </div>
+
+            <!-- Image Card 3 -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                <img src="asset/image3.png" alt="Event Image 3" class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-blue-800 font-semibold uppercase text-sm">Stories</p>
+                    <h4 class="text-lg font-bold">Celebrating Unity and Diversity</h4>
+                    <p class="text-gray-700 mt-2">Experience the joy of community at the No Finish Line Nairobi.</p>
+                </div>
+            </div>
+
+            <!-- Image Card 4 -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                <img src="asset/image4.png" alt="Event Image 4" class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-blue-800 font-semibold uppercase text-sm">Stories</p>
+                    <h4 class="text-lg font-bold">Runners United: Strength in Numbers</h4>
+                    <p class="text-gray-700 mt-2">Runners from all walks of life join to promote wellness.</p>
+                </div>
+            </div>
+
+            <!-- Image Card 5 -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                <img src="asset/image5.png" alt="Event Image 5" class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-blue-800 font-semibold uppercase text-sm">Stories</p>
+                    <h4 class="text-lg font-bold">Family and Friends: Running Together</h4>
+                    <p class="text-gray-700 mt-2">Friends and families join the marathon for fun and fitness.</p>
+                </div>
+            </div>
+
+            <!-- Image Card 6 -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                <img src="asset/image6.png" alt="Event Image 6" class="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fas fa-bars text-white text-3xl"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-blue-800 font-semibold uppercase text-sm">Stories</p>
+                    <h4 class="text-lg font-bold">Inspiring Moments from the Marathon</h4>
+                    <p class="text-gray-700 mt-2">Catch the best highlights from the No Finish Line.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 px-4 md:px-16 lg:px-24">
+        <h3 class="text-3xl font-bold mb-4">About the No Finish Line Nairobi</h3>
+        <p>NO FINISH LINE (NFL) is a unique charity sports festival combining endurance running, wellness, and community activism to support children living with mental impairments. Founded in Monaco in 1999 under the patronage of HSH Prince Albert II, NFL has grown into a global series of events uniting participants worldwide to raise funds and awareness for vulnerable children.
+
+In September 2025, Nairobi will host the first NFL event in Africa, organized by Extrathion Sports Limited in partnership with NO FINISH LINE International. Over 72 hours, thousands of runners, walkers, and volunteers will converge at Uhuru Gardens to run, donate, and advocate for mental health—proving that every step counts.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 px-4 md:px-16 lg:px-24">
+        <h3 class="text-3xl font-bold mb-4">Contact Us</h3>
+        <p>Email: info@nofinishlinenairobi.org</p>
+        <p>Phone: +254 712 345678</p>
+    </section>
+<!-- Footer Section -->
+<footer class="bg-[#E52D2F] text-white py-8 mt-12">
+    <div class="container mx-auto px-4 md:px-16 lg:px-24">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <!-- Logo and Description -->
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h2 class="text-2xl font-bold">No Finish Line Nairobi</h2>
+                <p class="mt-2 text-sm text-gray-300">Keep Moving,Never quitor give up</p>
+            </div>
+            <!-- Social Media Links -->
+            <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+        </div>
+
+        <hr class="my-4 border-gray-600">
+
+        <!-- Copyright -->
+        <div class="text-center text-sm text-gray-400">
+            <p>&copy; No Finish Line Nairobi 2025 All rights reserved. | Designed by No Finish Line Nairobi</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - No Finish Line Nairobi 2025</title>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-blue: #E52D2F;
+            --dark-blue: #E52D2F;
+            --light-blue: #E52D2F;
+            --accent-orange: #ff7e33;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .hero-header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* Impact Visualization */
+        .impact-section {
+            background-color: var(--light-blue);
+            padding: 50px 0;
+            margin: 40px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .impact-section h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .impact-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .impact-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            color: #333;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .impact-card h3 {
+            color: var(--primary-blue);
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .impact-card p {
+            font-size: 1.1rem;
+        }
+
+        /* Volunteer Form */
+        .volunteer-form-section {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px auto;
+            max-width: 300px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 40px auto 0;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background-color: #e66a2a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .impact-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .volunteer-form-section {
+                padding: 25px;
+            }
+
+            #menuToggle {
+                display: block;
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Register</a>
+            <a href="Donation.html">Donate</a>
+            <a href="Volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-blue-900 text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="Volunteer.html" class="block py-2" onclick="closeMenu()">Volunteer</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+        });
+    </script>
+
+    <!-- Hero Header Section -->
+    <header class="hero-header">
+        <div class="container">
+            <h1>Become a Volunteer</h1>
+            <p>Join us at NO FINISH LINE Nairobi 2025 and make a lasting impact on children living with mental impairments. Your time and skills can change lives.</p>
+        </div>
+    </header>
+
+    <!-- Impact Visualization -->
+    <section class="impact-section">
+        <div class="container">
+            <h2>Your Time Makes a Difference</h2>
+            <p>Every hour you volunteer directly supports children with mental health challenges</p>
+
+            <div class="impact-cards">
+                <div class="impact-card">
+                    <h3>6</h3>
+                    <p>Hours of Volunteering</p>
+                </div>
+
+                <div class="impact-card">
+                    <h3>=</h3>
+                    <p>Equals</p>
+                </div>
+
+                <div class="impact-card">
+                    <h3>2</h3>
+                    <p>Children Supported</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Form -->
+    <section class="volunteer-form-section container">
+        <h2 class="form-title">Volunteer Application</h2>
+
+        <form id="volunteerForm">
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label for="fullName">Full Name*</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address*</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number*</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <!-- Availability -->
+            <div class="form-group">
+                <label for="availability">When are you available?*</label>
+                <select id="availability" name="availability" required>
+                    <option value="">Select availability</option>
+                    <option value="pre-event">Pre-Event (August 2025)</option>
+                    <option value="day1">September 5, 2025</option>
+                    <option value="day2">September 6, 2025</option>
+                    <option value="day3">September 7, 2025</option>
+                    <option value="flexible">Flexible - Any dates</option>
+                </select>
+            </div>
+
+            <!-- Skills -->
+            <div class="form-group">
+                <label for="skills">Relevant Skills*</label>
+                <select id="skills" name="skills" required>
+                    <option value="">Select your skills</option>
+                    <option value="event-mgmt">Event Management</option>
+                    <option value="first-aid">First Aid Certified</option>
+                    <option value="languages">Multilingual</option>
+                    <option value="sports">Sports/Coaching</option>
+                    <option value="mental-health">Mental Health Background</option>
+                    <option value="other">Other - Please specify in motivation</option>
+                </select>
+            </div>
+
+            <!-- Motivation -->
+            <div class="form-group">
+                <label for="motivation">Why do you want to volunteer with NO FINISH LINE?*</label>
+                <textarea id="motivation" name="motivation" required placeholder="Share what inspires you to join us..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Apply to Volunteer</button>
+        </form>
+    </section>
+
+    <script>
+        // Form submission handling
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the data to your server
+            // For now, we'll just show an alert
+            alert('Thank you for your application! We will contact you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

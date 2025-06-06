@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="No Finish Line Nairobi Blog - Latest Updates and Stories">
+    <title>Blog | No Finish Line Nairobi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-hero {
+            background-image: url('asset/hero5.png');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 10;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .impact-story {
+            border-left: 4px solid #0056b3;
+            padding-left: 1rem;
+        }
+        .upload-btn {
+            transition: all 0.3s ease;
+        }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Register</a>
+            <a href="Donation.html">Donate</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute [#E52D2F]-900 text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+        });
+    </script>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero relative">
+        <div class="overlay"></div>
+        <div class="hero-text">Latest Updates and Stories</div>
+    </section>
+
+    <!-- Blog Content Section -->
+    <section class="py-12 px-4 md:px-16 lg:px-24">
+        <!-- Mental Health Clinics Section -->
+        <div class="mb-16 bg-[#E52D2F] p-6 rounded-lg">
+            <h2 class="text-3xl font-bold mb-6 text-[#E52D2F]">Pre-Event Mental Health Clinics</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="asset/clinic.jpg" alt="Mental Health Clinic" class="w-full rounded-lg shadow-md">
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Free Clinics: September 1-3, 2025</h3>
+                    <p class="mb-4">Join our expert-led mental health clinics before the main event. Open to all participants and community members.</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                        <li>Professional counseling sessions</li>
+                        <li>Mental health first aid training</li>
+                        <li>Parent-child therapy workshops</li>
+                        <li>Stress management techniques</li>
+                    </ul>
+                    <button class="bg-[#E52D2F] text-white px-6 py-2 rounded-lg font-medium">
+                        View Clinic Schedule
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Stories Section -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-[#E52D2F]">Mental Health Impact Stories</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Story 1 -->
+                <div class="bg-white shadow-md rounded-lg overflow-hidden impact-story">
+                    <img src="asset/story1.jpg" alt="Impact Story" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">James' Journey</h3>
+                        <p class="text-gray-600 mb-4">How early intervention changed one boy's life at St. Catherine's School...</p>
+                        <a href="#" class="text-[#E52D2F] font-medium">Read Full Story →</a>
+                    </div>
+                </div>
+                
+                <!-- Story 2 -->
+                <div class="bg-white shadow-md rounded-lg overflow-hidden impact-story">
+                    <img src="asset/story2.jpg" alt="Impact Story" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">A Teacher's Perspective</h3>
+                        <p class="text-gray-600 mb-4">Daily challenges and triumphs in special needs education...</p>
+                        <a href="#" class="text-[#E52D2F] font-medium">Read Full Story →</a>
+                    </div>
+                </div>
+                
+                <!-- Story 3 -->
+                <div class="bg-white shadow-md rounded-lg overflow-hidden impact-story">
+                    <img src="asset/story3.jpg" alt="Impact Story" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Breaking the Stigma</h3>
+                        <p class="text-gray-600 mb-4">How one community transformed its view on mental health...</p>
+                        <a href="#" class="text-[#E52D2F] font-medium">Read Full Story →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Challenge Section -->
+        <div class="bg-orange-50 p-8 rounded-lg">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#E52D2F] mb-2">#BeatMentalSickness Challenge</h2>
+                <p class="text-lg">Share your story for a chance to win KES 200,000!</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">How to Participate:</h3>
+                    <ol class="list-decimal pl-5 space-y-3 mb-6">
+                        <li>Create a 1-3 minute video about mental health awareness</li>
+                        <li>Post on Instagram/TikTok with #BeatMentalSickness</li>
+                        <li>Upload your entry below for official judging</li>
+                    </ol>
+                    <p class="text-sm text-gray-600">*Entries must be filmed in Kenya. Winner announced October 15, 2025.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 mb-4">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-[#E52D2F] mb-3"></i>
+                        <p class="mb-2">Upload your challenge video</p>
+                        <button class="upload-btn bg-[#E52D2F] text-white px-6 py-2 rounded-lg font-medium inline-flex items-center">
+                            <i class="fas fa-plus mr-2"></i> Select File
+                            <input type="file" class="hidden" accept="video/*">
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2">MP4 or MOV, max 100MB</p>
+                    </div>
+                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold">
+                        Submit Entry
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regular Blog Posts Section -->
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold mb-6 text-[#E52D2F]">Latest Blog Posts</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="asset/image13.png" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Pre Event Runs with Ambassadors</h3>
+                        <p class="text-gray-600 mt-2">Run with Veterans.</p>
+                        <a href="#" class="text-[#E52D2F] mt-4 block">Read More</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="asset/image14.png" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Training Tips from Ambassadors</h3>
+                        <p class="text-gray-600 mt-2">Essential training tips to prepare for the marathon.</p>
+                        <a href="#" class="text-[#E52D2F] mt-4 block">Read More</a>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="asset/image15.png" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Nutrition Guide for Marathon Runners</h3>
+                        <p class="text-gray-600 mt-2">Learn about the best foods to boost your performance.</p>
+                        <a href="#" class="text-[#E52D2F] mt-4 block">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#E52D2F] text-white py-8 mt-12">
+        <div class="container mx-auto px-4 md:px-16 lg:px-24">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo and Description -->
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl font-bold">No Finish Line Nairobi</h2>
+                    <p class="mt-2 text-sm text-gray-300">Keep Moving,Never quit or give up.</p>
+                </div>
+                <!-- Social Media Links -->
+                <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+            </div>
+
+            <hr class="my-4 border-gray-600">
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-400">
+                <p>&copy;No Finish Line Nairobi. All rights reserved. | Designed by No Finish Line Nairobi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // File upload interaction
+        document.querySelector('.upload-btn input').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'No file selected';
+            document.querySelector('.upload-btn').innerHTML = 
+                `<i class="fas fa-check mr-2"></i> ${fileName.substring(0, 20)}...`;
+        });
+    </script>
+</body>
+</html>

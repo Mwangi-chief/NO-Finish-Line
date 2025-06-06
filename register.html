@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for the Nairobi Marathon - Secure Your Spot">
+    <title>Register | Nairobi Marathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .register-hero {
+            background-image: url('asset/hero3.png');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .overlay {
+            background-color: rgba(229, 45, 47, 0.7);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 10;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .category-group {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+        .category-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        .group-type-btn {
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .group-type-btn.active {
+            border-color: #0056b3;
+            background-color: #e6f0ff;
+        }
+        
+        /* Navigation Dropdown Styles */
+        .nav-item {
+            position: relative;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #E52D2F;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            color: white;
+            padding: 12px 16px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu a:hover {
+            background-color: #c22525;
+        }
+        
+        /* Section anchors with offset for fixed header */
+        section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+        <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
+        <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="desktop-menu hidden md:flex space-x-4">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <div class="nav-item">
+                <a href="register.html" class="hover:underline">Register</a>
+                <div class="dropdown-menu">
+                    <a href="register.html#individualForm">Individual Registration</a>
+                    <a href="register.html#groupForm">Group Registration</a>
+                </div>
+            </div>
+            <a href="Donation.html">Donate</a>
+            <a href="volunteer.html">Volunteer</a>
+            <a href="faq.html">FAQ</a>
+            <a href="blog.html">Blog</a>
+            <a href="Shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-[#E52D2F] text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
+        <a href="home.html" class="block py-2" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
+        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
+        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    </div>
+
+    <!-- Register Hero Section -->
+    <section class="register-hero relative">
+        <div class="overlay"></div>
+        <div class="hero-text">Register for the Nairobi Marathon</div>
+    </section>
+
+    <!-- Register Form Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold mb-8 text-center">Register for the Nairobi Marathon</h3>
+            
+            <form class="space-y-6 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <!-- Registration Type Toggle -->
+                <div class="flex justify-center mb-8">
+                    <div class="inline-flex rounded-md shadow-sm">
+                        <button type="button" id="individualBtn" class="group-type-btn px-4 py-2 text-sm font-medium rounded-l-lg focus:z-10 active">
+                            Individual Registration
+                        </button>
+                        <button type="button" id="groupBtn" class="group-type-btn px-4 py-2 text-sm font-medium rounded-r-lg focus:z-10">
+                            Group Registration
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Individual Registration Form (Default Visible) -->
+                <div id="individualForm" class="registration-section">
+                    <!-- Personal Information -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Personal Information</h4>
+                        <input type="text" placeholder="Full Name" class="w-full p-3 border rounded" required>
+                        <input type="email" placeholder="Email" class="w-full p-3 border rounded" required>
+                        <input type="tel" placeholder="Phone Number" class="w-full p-3 border rounded" required>
+                        <input type="date" placeholder="Date of Birth" class="w-full p-3 border rounded" required>
+                    </div>
+
+                    <!-- Race Categories -->
+                    <div>
+                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Race Categories</h4>
+                        
+                        <div class="category-group">
+                            <div class="category-title">Children's Runs</div>
+                            <select class="w-full p-3 border rounded bg-gray-50" required>
+                                <option value="">Select Children's Category</option>
+                                <option value="u13">Boys & Girls U13 years run: 3 laps/3km</option>
+                                <option value="u15">Boys & Girls U15 years run: 5 laps/5km</option>
+                                <option value="u18">Boys & Girls U18 years run: 6 laps/6km</option>
+                            </select>
+                        </div>
+                        
+                        <div class="category-group">
+                            <div class="category-title">Youth Runs</div>
+                            <select class="w-full p-3 border rounded bg-gray-50" required>
+                                <option value="">Select Youth Category</option>
+                                <option value="u20m">Male U20 years: 8 laps/8km</option>
+                                <option value="u20f">Female U20 years: 8 laps/8km</option>
+                            </select>
+                        </div>
+                        
+                        <div class="category-group">
+                            <div class="category-title">Adult Runs</div>
+                            <select class="w-full p-3 border rounded bg-gray-50" required>
+                                <option value="">Select Adult Category</option>
+                                <option value="adult">Male & Female 20+ years: 50 laps/50km over 72 hours</option>
+                                <option value="corporate">Corporate challenge: 50 laps/50km over 72 hours</option>
+                            </select>
+                        </div>
+                        
+                        <div class="category-group">
+                            <div class="category-title">Veteran Runs</div>
+                            <select class="w-full p-3 border rounded bg-gray-50" required>
+                                <option value="">Select Veteran Category</option>
+                                <option value="v50">Male & Female 50+ years: 50 laps/50km over 72 hours</option>
+                                <option value="v60">Male & Female 60+ years: 45 laps/45km over 72 hours</option>
+                                <option value="v70">Male & Female 70+ years: 30 laps/30km over 72 hours</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Registration Form (Initially Hidden) -->
+                <div id="groupForm" class="registration-section hidden">
+                    <!-- Group Type Selection -->
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Type</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button type="button" data-group-type="schools" class="group-type-btn p-4 rounded-lg text-center">
+                                <i class="fas fa-school text-2xl mb-2 text-[#E52D2F]"></i>
+                                <h5 class="font-semibold">Schools</h5>
+                                <p class="text-sm text-gray-600">Primary/High/Universities</p>
+                            </button>
+                            <button type="button" data-group-type="government" class="group-type-btn p-4 rounded-lg text-center">
+                                <i class="fas fa-landmark text-2xl mb-2 text-[#E52D2F]"></i>
+                                <h5 class="font-semibold">Government</h5>
+                                <p class="text-sm text-gray-600">Institutions & Parastatals</p>
+                            </button>
+                            <button type="button" data-group-type="corporate" class="group-type-btn p-4 rounded-lg text-center">
+                                <i class="fas fa-building text-2xl mb-2 text-[#E52D2F]"></i>
+                                <h5 class="font-semibold">Corporate</h5>
+                                <p class="text-sm text-gray-600">Businesses & Organizations</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Group Details Form -->
+                    <div id="groupDetails" class="hidden">
+                        <!-- School Group Form -->
+                        <div id="schoolsForm" class="hidden">
+                            <div class="space-y-4">
+                                <h5 class="text-lg font-semibold text-[#E52D2F]">School Information</h5>
+                                <input type="text" placeholder="School Name" class="w-full p-3 border rounded">
+                                <select class="w-full p-3 border rounded">
+                                    <option value="">Select School Type</option>
+                                    <option value="primary">Primary School</option>
+                                    <option value="high">High School</option>
+                                    <option value="university">University/College</option>
+                                </select>
+                                <input type="text" placeholder="Contact Person Name" class="w-full p-3 border rounded">
+                                <input type="tel" placeholder="Contact Person Phone" class="w-full p-3 border rounded">
+                                <input type="number" placeholder="Number of Participants" class="w-full p-3 border rounded">
+                                <textarea placeholder="Special Requirements" class="w-full p-3 border rounded"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Government Group Form -->
+                        <div id="governmentForm" class="hidden">
+                            <div class="space-y-4">
+                                <h5 class="text-lg font-semibold text-[#E52D2F]">Institution Information</h5>
+                                <input type="text" placeholder="Institution Name" class="w-full p-3 border rounded">
+                                <input type="text" placeholder="Department" class="w-full p-3 border rounded">
+                                <input type="text" placeholder="Contact Person Name" class="w-full p-3 border rounded">
+                                <input type="tel" placeholder="Contact Person Phone" class="w-full p-3 border rounded">
+                                <input type="number" placeholder="Number of Participants" class="w-full p-3 border rounded">
+                                <textarea placeholder="Special Requirements" class="w-full p-3 border rounded"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Corporate Group Form -->
+                        <div id="corporateForm" class="hidden">
+                            <div class="space-y-4">
+                                <h5 class="text-lg font-semibold text-[#E52D2F]">Company Information</h5>
+                                <input type="text" placeholder="Company Name" class="w-full p-3 border rounded">
+                                <input type="text" placeholder="Industry" class="w-full p-3 border rounded">
+                                <input type="text" placeholder="Contact Person Name" class="w-full p-3 border rounded">
+                                <input type="tel" placeholder="Contact Person Phone" class="w-full p-3 border rounded">
+                                <input type="number" placeholder="Number of Participants" class="w-full p-3 border rounded">
+                                <textarea placeholder="Special Requirements" class="w-full p-3 border rounded"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Group Race Category Selection -->
+                        <div class="mt-6">
+                            <h5 class="text-lg font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Race Category</h5>
+                            <select class="w-full p-3 border rounded bg-gray-50">
+                                <option value="">Select Group Category</option>
+                                <option value="corporate-team">Corporate Team Challenge (50km)</option>
+                                <option value="school-team">School Team Challenge (varies by age group)</option>
+                                <option value="government-team">Government Team Challenge (50km)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Common Fields for Both Forms -->
+                <div class="space-y-4">
+                    <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Emergency Contact</h4>
+                    <input type="text" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
+                    <input type="tel" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="flex items-center">
+                    <input type="checkbox" id="terms" class="mr-2" required>
+                    <label for="terms" class="text-sm">I agree to the <a href="#" class="text-[#E52D2F]">terms and conditions</a> and <a href="#" class="text-[#E52D2F]">waiver</a></label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="bg-[#E52D2F] hover:bg-[#E52D2F] text-white px-6 py-3 rounded w-full font-bold transition duration-300">
+                    Complete Registration
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#E52D2F] text-white py-8 mt-12">
+        <div class="container mx-auto px-4 md:px-16 lg:px-24">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo and Description -->
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl font-bold">Nairobi Marathon</h2>
+                    <p class="mt-2 text-sm text-gray-300">Join the run, support a cause, and experience Nairobi's vibrant spirit.</p>
+                </div>
+                <!-- Social Media Links -->
+                <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+            </div>
+
+            <hr class="my-4 border-gray-600">
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-400">
+                <p>&copy; 2025 Nairobi Marathon. All rights reserved. | Designed by Nairobi Marathon Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.getElementById("menuToggle");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuToggle.addEventListener("click", function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            window.closeMenu = function() {
+                mobileMenu.classList.add("hidden");
+            };
+
+            // Toggle between individual and group registration
+            document.getElementById('individualBtn').addEventListener('click', function() {
+                this.classList.add('active');
+                document.getElementById('groupBtn').classList.remove('active');
+                document.getElementById('individualForm').classList.remove('hidden');
+                document.getElementById('groupForm').classList.add('hidden');
+            });
+
+            document.getElementById('groupBtn').addEventListener('click', function() {
+                this.classList.add('active');
+                document.getElementById('individualBtn').classList.remove('active');
+                document.getElementById('individualForm').classList.add('hidden');
+                document.getElementById('groupForm').classList.remove('hidden');
+            });
+
+            // Handle group type selection
+            const groupTypeButtons = document.querySelectorAll('[data-group-type]');
+            groupTypeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    groupTypeButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show group details section
+                    document.getElementById('groupDetails').classList.remove('hidden');
+                    
+                    // Hide all group forms
+                    document.getElementById('schoolsForm').classList.add('hidden');
+                    document.getElementById('governmentForm').classList.add('hidden');
+                    document.getElementById('corporateForm').classList.add('hidden');
+                    
+                    // Show selected group form
+                    const groupType = this.getAttribute('data-group-type');
+                    document.getElementById(`${groupType}Form`).classList.remove('hidden');
+                });
+            });
+
+            // Check URL hash and show appropriate form
+            if (window.location.hash === '#groupForm') {
+                document.getElementById('individualBtn').classList.remove('active');
+                document.getElementById('groupBtn').classList.add('active');
+                document.getElementById('individualForm').classList.add('hidden');
+                document.getElementById('groupForm').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

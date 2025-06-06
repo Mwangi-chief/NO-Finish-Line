@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - NO FINISH LINE Nairobi 2025</title>
+    <style>
+        /* Main Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #0056b3; /* NFL brand blue */
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .criteria {
+            flex: 1;
+            min-width: 300px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* Form Styles */
+        .volunteer-form {
+            background: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 120px;
+        }
+        
+        .submit-btn {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #003d7a;
+        }
+        
+        /* Volunteer Benefits */
+        .benefits {
+            margin-top: 40px;
+            background: #e9f5ff;
+            padding: 25px;
+            border-radius: 5px;
+        }
+        
+        .benefits ul {
+            columns: 2;
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .benefits li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .benefits li:before {
+            content: "✓";
+            color: #0056b3;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VOLUNTEER WITH US</h1>
+        <p>Be part of Kenya's first NO FINISH LINE event and help transform children's mental health</p>
+    </header>
+    
+    <div class="container">
+        <section class="criteria">
+            <h2>Volunteer Criteria</h2>
+            <p>We're looking for passionate individuals who meet the following requirements:</p>
+            
+            <h3>Essential:</h3>
+            <ul>
+                <li>Minimum age of 18 years (16+ with guardian consent)</li>
+                <li>Availability for at least one 6-hour shift during event days (Sept 5-7, 2025)</li>
+                <li>Good communication skills in English or Swahili</li>
+                <li>Positive attitude and team spirit</li>
+            </ul>
+            
+            <h3>Preferred Skills:</h3>
+            <ul>
+                <li>Experience in event coordination or customer service</li>
+                <li>First aid/medical training</li>
+                <li>Fluency in multiple languages</li>
+                <li>Background in sports, mental health, or disability support</li>
+            </ul>
+            
+            <h3>Commitment:</h3>
+            <p>Selected volunteers must attend one orientation session in August 2025 and be available for their assigned shifts.</p>
+        </section>
+        
+        <section class="form-section">
+            <h2>Volunteer Application Form</h2>
+            <form class="volunteer-form" action="/submit-volunteer" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Full Name*</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age*</label>
+                    <input type="number" id="age" name="age" min="16" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="occupation">Occupation/Student Status*</label>
+                    <input type="text" id="occupation" name="occupation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Relevant Experience/Skills*</label>
+                    <textarea id="experience" name="experience" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="availability">Availability (Select all that apply)*</label>
+                    <select id="availability" name="availability" multiple required>
+                        <option value="pre-event">Pre-Event (August 2025)</option>
+                        <option value="day1">September 5, 2025</option>
+                        <option value="day2">September 6, 2025</option>
+                        <option value="day3">September 7, 2025</option>
+                        <option value="post-event">Post-Event Support</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="why-volunteer">Why do you want to volunteer with NO FINISH LINE?*</label>
+                    <textarea id="why-volunteer" name="why-volunteer" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </section>
+    </div>
+    
+    <section class="benefits">
+        <h2>Volunteer Benefits</h2>
+        <ul>
+            <li>Official NFL Nairobi volunteer T-shirt</li>
+            <li>Certificate of participation</li>
+            <li>Opportunity to network with global ambassadors</li>
+            <li>Meals during your shifts</li>
+            <li>Special volunteer appreciation event</li>
+            <li>Training in event management and mental health awareness</li>
+            <li>Letter of recommendation for outstanding volunteers</li>
+            <li>Chance to make lasting impact on children's lives</li>
+        </ul>
+    </section>
+</body>
+</html>
