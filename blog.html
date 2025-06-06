@@ -108,22 +108,22 @@
     <!-- Blog Content Section -->
     <section class="py-12 px-4 md:px-16 lg:px-24">
         <!-- Mental Health Clinics Section -->
-        <div class="mb-16 bg-[#E52D2F] p-6 rounded-lg">
-            <h2 class="text-3xl font-bold mb-6 text-[#E52D2F]">Pre-Event Mental Health Clinics</h2>
+        <div id="featuredClinic" class="mb-16 bg-[#E52D2F] p-6 rounded-lg">
+            <h2 class="text-3xl font-bold mb-6 text-white">Pre-Event Mental Health Clinics</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <img src="asset/clinic.jpg" alt="Mental Health Clinic" class="w-full rounded-lg shadow-md">
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Free Clinics: September 1-3, 2025</h3>
-                    <p class="mb-4">Join our expert-led mental health clinics before the main event. Open to all participants and community members.</p>
-                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Free Clinics: September 1-3, 2025</h3>
+                    <p class="mb-4 text-white">Join our expert-led mental health clinics before the main event. Open to all participants and community members.</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-6 text-white">
                         <li>Professional counseling sessions</li>
                         <li>Mental health first aid training</li>
                         <li>Parent-child therapy workshops</li>
                         <li>Stress management techniques</li>
                     </ul>
-                    <button class="bg-[#E52D2F] text-white px-6 py-2 rounded-lg font-medium">
+                    <button id="viewClinicSchedule" class="bg-white text-[#E52D2F] px-6 py-2 rounded-lg font-medium">
                         View Clinic Schedule
                     </button>
                 </div>
@@ -133,36 +133,8 @@
         <!-- Impact Stories Section -->
         <div class="mb-16">
             <h2 class="text-3xl font-bold mb-6 text-[#E52D2F]">Mental Health Impact Stories</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Story 1 -->
-                <div class="bg-white shadow-md rounded-lg overflow-hidden impact-story">
-                    <img src="asset/story1.jpg" alt="Impact Story" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">James' Journey</h3>
-                        <p class="text-gray-600 mb-4">How early intervention changed one boy's life at St. Catherine's School...</p>
-                        <a href="#" class="text-[#E52D2F] font-medium">Read Full Story →</a>
-                    </div>
-                </div>
-                
-                <!-- Story 2 -->
-                <div class="bg-white shadow-md rounded-lg overflow-hidden impact-story">
-                    <img src="asset/story2.jpg" alt="Impact Story" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">A Teacher's Perspective</h3>
-                        <p class="text-gray-600 mb-4">Daily challenges and triumphs in special needs education...</p>
-                        <a href="#" class="text-[#E52D2F] font-medium">Read Full Story →</a>
-                    </div>
-                </div>
-                
-                <!-- Story 3 -->
-                <div class="bg-white shadow-md rounded-lg overflow-hidden impact-story">
-                    <img src="asset/story3.jpg" alt="Impact Story" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Breaking the Stigma</h3>
-                        <p class="text-gray-600 mb-4">How one community transformed its view on mental health...</p>
-                        <a href="#" class="text-[#E52D2F] font-medium">Read Full Story →</a>
-                    </div>
-                </div>
+            <div id="impactStories" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Stories will be loaded dynamically -->
             </div>
         </div>
 
@@ -172,7 +144,7 @@
                 <h2 class="text-3xl font-bold text-[#E52D2F] mb-2">#BeatMentalSickness Challenge</h2>
                 <p class="text-lg">Share your story for a chance to win KES 200,000!</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                     <h3 class="text-xl font-semibold mb-4">How to Participate:</h3>
@@ -183,20 +155,22 @@
                     </ol>
                     <p class="text-sm text-gray-600">*Entries must be filmed in Kenya. Winner announced October 15, 2025.</p>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 mb-4">
-                        <i class="fas fa-cloud-upload-alt text-4xl text-[#E52D2F] mb-3"></i>
-                        <p class="mb-2">Upload your challenge video</p>
-                        <button class="upload-btn bg-[#E52D2F] text-white px-6 py-2 rounded-lg font-medium inline-flex items-center">
-                            <i class="fas fa-plus mr-2"></i> Select File
-                            <input type="file" class="hidden" accept="video/*">
+                    <form id="challenge-form">
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 mb-4">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-[#E52D2F] mb-3"></i>
+                            <p class="mb-2">Upload your challenge video</p>
+                            <button type="button" class="upload-btn bg-[#E52D2F] text-white px-6 py-2 rounded-lg font-medium inline-flex items-center">
+                                <i class="fas fa-plus mr-2"></i> Select File
+                                <input type="file" class="hidden" accept="video/*" name="video">
+                            </button>
+                            <p class="text-xs text-gray-500 mt-2">MP4 or MOV, max 100MB</p>
+                        </div>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold">
+                            Submit Entry
                         </button>
-                        <p class="text-xs text-gray-500 mt-2">MP4 or MOV, max 100MB</p>
-                    </div>
-                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold">
-                        Submit Entry
-                    </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -204,31 +178,8 @@
         <!-- Regular Blog Posts Section -->
         <div class="mt-16">
             <h2 class="text-3xl font-bold mb-6 text-[#E52D2F]">Latest Blog Posts</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <img src="asset/image13.png" alt="Blog Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold">Pre Event Runs with Ambassadors</h3>
-                        <p class="text-gray-600 mt-2">Run with Veterans.</p>
-                        <a href="#" class="text-[#E52D2F] mt-4 block">Read More</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <img src="asset/image14.png" alt="Blog Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold">Training Tips from Ambassadors</h3>
-                        <p class="text-gray-600 mt-2">Essential training tips to prepare for the marathon.</p>
-                        <a href="#" class="text-[#E52D2F] mt-4 block">Read More</a>
-                    </div>
-                </div>
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <img src="asset/image15.png" alt="Blog Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold">Nutrition Guide for Marathon Runners</h3>
-                        <p class="text-gray-600 mt-2">Learn about the best foods to boost your performance.</p>
-                        <a href="#" class="text-[#E52D2F] mt-4 block">Read More</a>
-                    </div>
-                </div>
+            <div id="blogPosts" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <!-- Blog posts will be loaded dynamically -->
             </div>
         </div>
     </section>
@@ -260,13 +211,7 @@
         </div>
     </footer>
 
-    <script>
-        // File upload interaction
-        document.querySelector('.upload-btn input').addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || 'No file selected';
-            document.querySelector('.upload-btn').innerHTML = 
-                `<i class="fas fa-check mr-2"></i> ${fileName.substring(0, 20)}...`;
-        });
-    </script>
+    <script src="js/blog-api.js"></script>
+    <script src="js/blog-interactions.js"></script>
 </body>
 </html>
