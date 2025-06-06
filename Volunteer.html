@@ -213,34 +213,36 @@
 
 <body>
   <!-- Navigation Bar -->
-    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
+    <!-- Navigation Bar -->
+    <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md z-50">
         <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
         <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
             <i class="fas fa-bars"></i>
         </button>
-        <nav class="desktop-menu hidden md:flex space-x-4">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="register.html">Register</a>
-            <a href="Donation.html">Donate</a>
-            <a href="Volunteer.html">Volunteer</a>
-            <a href="faq.html">FAQ</a>
-            <a href="blog.html">Blog</a>
-            <a href="Shop.html">Shop</a>
-            <a href="contact.html">Contact</a>
+        <nav class="hidden md:flex space-x-4">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="about.html" class="hover:underline">About</a>
+            <a href="register.html" class="hover:underline">Register</a>
+            <a href="Donation.html" class="hover:underline">Donate</a>
+            <a href="Volunteer.html" class="hover:underline">Volunteer</a>
+            <a href="faq.html" class="hover:underline">FAQ</a>
+            <a href="blog.html" class="hover:underline">Blog</a>
+            <a href="Shop.html" class="font-bold underline">Shop</a>
+            <a href="contact.html" class="hover:underline">Contact</a>
         </nav>
     </header>
 
     <!-- Mobile Navigation Menu -->
-    <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-blue-900 text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
-        <a href="index.html" class="block py-2" onclick="closeMenu()">Home</a>
-        <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
-        <a href="register.html" class="block py-2" onclick="closeMenu()">Register</a>
-        <a href="Donation.html" class="block py-2" onclick="closeMenu()">Donate</a>
-        <a href="Volunteer.html" class="block py-2" onclick="closeMenu()">Volunteer</a>
-        <a href="faq.html" class="block py-2" onclick="closeMenu()">FAQ</a>
-        <a href="blog.html" class="block py-2" onclick="closeMenu()">Blog</a>
-        <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
+    <div id="mobileMenu" class="hidden md:hidden absolute bg-[#E52D2F] text-white w-3/4 right-0 p-4 rounded-md z-50 max-w-xs mt-2">
+        <a href="index.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">Home</a>
+        <a href="about.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">About</a>
+        <a href="register.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">Register</a>
+        <a href="Donation.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">Donate</a>
+        <a href="Volunteer.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">Volunteer</a>
+        <a href="faq.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">FAQ</a>
+        <a href="blog.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">Blog</a>
+        <a href="Shop.html" class="block py-2 hover:bg-[#c82333] px-2 rounded font-bold" onclick="closeMenu()">Shop</a>
+        <a href="contact.html" class="block py-2 hover:bg-[#c82333] px-2 rounded" onclick="closeMenu()">Contact</a>
     </div>
     <!-- JavaScript for Mobile Menu -->
     <script>
