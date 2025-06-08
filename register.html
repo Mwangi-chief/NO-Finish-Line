@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Register for the Nairobi Marathon - Secure Your Spot">
-    <title>Register | Nairobi Marathon</title>
+    <meta name="description" content="Register for the Nairobi Marathon - Registration fee 3,000 KES">
+    <title>Register | No Finish Line Nairobi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -33,26 +33,6 @@
             font-size: 2rem;
             font-weight: bold;
         }
-        .category-group {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
-        }
-        .category-title {
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 8px;
-        }
-        .group-type-btn {
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-        .group-type-btn.active {
-            border-color: #0056b3;
-            background-color: #e6f0ff;
-        }
-        
-        /* Navigation Dropdown Styles */
         .nav-item {
             position: relative;
         }
@@ -78,10 +58,34 @@
         .dropdown-menu a:hover {
             background-color: #c22525;
         }
-        
-        /* Section anchors with offset for fixed header */
         section {
             scroll-margin-top: 80px;
+        }
+        .fee-notice {
+            background-color: #f8fafc;
+            border-left: 4px solid #E52D2F;
+            padding: 12px;
+            margin: 20px 0;
+        }
+        .mpesa-box {
+            border: 2px dashed #25D366;
+            background-color: #f0fff4;
+        }
+        .registration-tab {
+            background-color: #E52D2F;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .registration-tab.active {
+            background-color: #c22525;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .registration-tab.inactive {
+            background-color: #f3f4f6;
+            color: #6b7280;
         }
     </style>
 </head>
@@ -125,209 +129,191 @@
     <!-- Register Hero Section -->
     <section class="register-hero relative">
         <div class="overlay"></div>
-        <div class="hero-text">Register for the Nairobi Marathon</div>
+        <div class="hero-text">Register for No Finish Line Nairobi</div>
     </section>
 
     <!-- Register Form Section -->
     <section class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold mb-8 text-center">Register for the Nairobi Marathon</h3>
-            
-            <form class="space-y-6 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                <!-- Registration Type Toggle -->
-                <div class="flex justify-center mb-8">
-                    <div class="inline-flex rounded-md shadow-sm">
-                        <button type="button" id="individualBtn" class="group-type-btn px-4 py-2 text-sm font-medium rounded-l-lg focus:z-10 active">
-                            Individual Registration
-                        </button>
-                        <button type="button" id="groupBtn" class="group-type-btn px-4 py-2 text-sm font-medium rounded-r-lg focus:z-10">
-                            Group Registration
-                        </button>
-                    </div>
-                </div>
+            <h3 class="text-3xl font-bold mb-4 text-center">Registration Form</h3>
 
-                <!-- Individual Registration Form (Default Visible) -->
+            <!-- Single Clear Fee Notice -->
+            <div class="fee-notice max-w-2xl mx-auto mb-8">
+                <p class="font-semibold text-[#E52D2F]">Registration Fee: 3,000 KES per participant</p>
+                <p class="text-sm text-gray-600 mt-1">Choose your registration type below</p>
+            </div>
+
+            <!-- Registration Type Tabs -->
+            <div class="flex justify-center space-x-4 mb-8">
+                <div id="individualTab" class="registration-tab active" onclick="showIndividualForm()">
+                    Individual Registration
+                </div>
+                <div id="groupTab" class="registration-tab inactive" onclick="showGroupForm()">
+                    Group Registration
+                </div>
+            </div>
+
+            <form class="space-y-6 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <!-- Individual Registration Form -->
                 <div id="individualForm" class="registration-section">
                     <!-- Personal Information -->
                     <div class="space-y-4">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Personal Information</h4>
                         <input type="text" placeholder="Full Name" class="w-full p-3 border rounded" required>
                         <input type="email" placeholder="Email" class="w-full p-3 border rounded" required>
-                        <input type="tel" placeholder="Phone Number" class="w-full p-3 border rounded" required>
+                        <input type="tel" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
                         <input type="date" placeholder="Date of Birth" class="w-full p-3 border rounded" required>
                     </div>
 
                     <!-- Race Categories -->
-                    <div>
-                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Race Categories</h4>
-                        
-                        <div class="category-group">
-                            <div class="category-title">Children's Runs</div>
+                    <div class="mt-6">
+                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Select Your Category</h4>
+
+                        <div class="mb-4">
                             <select class="w-full p-3 border rounded bg-gray-50" required>
-                                <option value="">Select Children's Category</option>
-                                <option value="u13">Boys & Girls U13 years run: 3 laps/3km</option>
-                                <option value="u15">Boys & Girls U15 years run: 5 laps/5km</option>
-                                <option value="u18">Boys & Girls U18 years run: 6 laps/6km</option>
+                                <option value="">Select Your Race Category</option>
+                                <option value="u13">Children U13: 3km</option>
+                                <option value="u15">Children U15: 5km</option>
+                                <option value="u18">Youth U18: 6km</option>
+                                <option value="u20">Youth U20: 8km</option>
+                                <option value="adult">Adult: 50km</option>
+                                <option value="veteran">Veteran: 30-50km</option>
                             </select>
                         </div>
-                        
-                        <div class="category-group">
-                            <div class="category-title">Youth Runs</div>
-                            <select class="w-full p-3 border rounded bg-gray-50" required>
-                                <option value="">Select Youth Category</option>
-                                <option value="u20m">Male U20 years: 8 laps/8km</option>
-                                <option value="u20f">Female U20 years: 8 laps/8km</option>
-                            </select>
-                        </div>
-                        
-                        <div class="category-group">
-                            <div class="category-title">Adult Runs</div>
-                            <select class="w-full p-3 border rounded bg-gray-50" required>
-                                <option value="">Select Adult Category</option>
-                                <option value="adult">Male & Female 20+ years: 50 laps/50km over 72 hours</option>
-                                <option value="corporate">Corporate challenge: 50 laps/50km over 72 hours</option>
-                            </select>
-                        </div>
-                        
-                        <div class="category-group">
-                            <div class="category-title">Veteran Runs</div>
-                            <select class="w-full p-3 border rounded bg-gray-50" required>
-                                <option value="">Select Veteran Category</option>
-                                <option value="v50">Male & Female 50+ years: 50 laps/50km over 72 hours</option>
-                                <option value="v60">Male & Female 60+ years: 45 laps/45km over 72 hours</option>
-                                <option value="v70">Male & Female 70+ years: 30 laps/30km over 72 hours</option>
-                            </select>
+                    </div>
+
+                    <!-- Individual Payment Summary -->
+                    <div class="bg-gray-100 p-4 rounded-lg border border-gray-300 mt-6">
+                        <h4 class="font-semibold text-lg mb-3">Payment Summary</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Registration Fee:</span>
+                                <span>3,000 KES</span>
+                            </div>
+                            <div class="border-t border-gray-300 my-2"></div>
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total Amount:</span>
+                                <span class="text-[#E52D2F]">3,000 KES</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Group Registration Form (Initially Hidden) -->
+                <!-- Group Registration Form -->
                 <div id="groupForm" class="registration-section hidden">
-                    <!-- Group Type Selection -->
                     <div class="mb-6">
-                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Type</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <button type="button" data-group-type="schools" class="group-type-btn p-4 rounded-lg text-center">
-                                <i class="fas fa-school text-2xl mb-2 text-[#E52D2F]"></i>
-                                <h5 class="font-semibold">Schools</h5>
-                                <p class="text-sm text-gray-600">Primary/High/Universities</p>
-                            </button>
-                            <button type="button" data-group-type="government" class="group-type-btn p-4 rounded-lg text-center">
-                                <i class="fas fa-landmark text-2xl mb-2 text-[#E52D2F]"></i>
-                                <h5 class="font-semibold">Government</h5>
-                                <p class="text-sm text-gray-600">Institutions & Parastatals</p>
-                            </button>
-                            <button type="button" data-group-type="corporate" class="group-type-btn p-4 rounded-lg text-center">
-                                <i class="fas fa-building text-2xl mb-2 text-[#E52D2F]"></i>
-                                <h5 class="font-semibold">Corporate</h5>
-                                <p class="text-sm text-gray-600">Businesses & Organizations</p>
-                            </button>
-                        </div>
+                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Information</h4>
+                        <select class="w-full p-3 border rounded mb-4">
+                            <option value="">Select Group Type</option>
+                            <option value="school">School/University</option>
+                            <option value="government">Government</option>
+                            <option value="corporate">Corporate</option>
+                        </select>
+                        <input type="text" placeholder="Organization Name" class="w-full p-3 border rounded mb-4">
+                        <input type="number" id="participantCount" placeholder="Number of Participants" class="w-full p-3 border rounded" min="1" value="1">
                     </div>
 
-                    <!-- Group Details Form -->
-                    <div id="groupDetails" class="hidden">
-                        <!-- School Group Form -->
-                        <div id="schoolsForm" class="hidden">
-                            <div class="space-y-4">
-                                <h5 class="text-lg font-semibold text-[#E52D2F]">School Information</h5>
-                                <input type="text" placeholder="School Name" class="w-full p-3 border rounded">
-                                <select class="w-full p-3 border rounded">
-                                    <option value="">Select School Type</option>
-                                    <option value="primary">Primary School</option>
-                                    <option value="high">High School</option>
-                                    <option value="university">University/College</option>
-                                </select>
-                                <input type="text" placeholder="Contact Person Name" class="w-full p-3 border rounded">
-                                <input type="tel" placeholder="Contact Person Phone" class="w-full p-3 border rounded">
-                                <input type="number" placeholder="Number of Participants" class="w-full p-3 border rounded">
-                                <textarea placeholder="Special Requirements" class="w-full p-3 border rounded"></textarea>
+                    <!-- Group Payment Summary -->
+                    <div class="bg-gray-100 p-4 rounded-lg border border-gray-300 mt-6">
+                        <h4 class="font-semibold text-lg mb-3">Payment Summary</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Fee per Participant:</span>
+                                <span>3,000 KES</span>
                             </div>
-                        </div>
-
-                        <!-- Government Group Form -->
-                        <div id="governmentForm" class="hidden">
-                            <div class="space-y-4">
-                                <h5 class="text-lg font-semibold text-[#E52D2F]">Institution Information</h5>
-                                <input type="text" placeholder="Institution Name" class="w-full p-3 border rounded">
-                                <input type="text" placeholder="Department" class="w-full p-3 border rounded">
-                                <input type="text" placeholder="Contact Person Name" class="w-full p-3 border rounded">
-                                <input type="tel" placeholder="Contact Person Phone" class="w-full p-3 border rounded">
-                                <input type="number" placeholder="Number of Participants" class="w-full p-3 border rounded">
-                                <textarea placeholder="Special Requirements" class="w-full p-3 border rounded"></textarea>
+                            <div class="flex justify-between">
+                                <span>Number of Participants:</span>
+                                <span id="displayParticipantCount">1</span>
                             </div>
-                        </div>
-
-                        <!-- Corporate Group Form -->
-                        <div id="corporateForm" class="hidden">
-                            <div class="space-y-4">
-                                <h5 class="text-lg font-semibold text-[#E52D2F]">Company Information</h5>
-                                <input type="text" placeholder="Company Name" class="w-full p-3 border rounded">
-                                <input type="text" placeholder="Industry" class="w-full p-3 border rounded">
-                                <input type="text" placeholder="Contact Person Name" class="w-full p-3 border rounded">
-                                <input type="tel" placeholder="Contact Person Phone" class="w-full p-3 border rounded">
-                                <input type="number" placeholder="Number of Participants" class="w-full p-3 border rounded">
-                                <textarea placeholder="Special Requirements" class="w-full p-3 border rounded"></textarea>
+                            <div class="border-t border-gray-300 my-2"></div>
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total Amount:</span>
+                                <span id="totalAmount" class="text-[#E52D2F]">3,000 KES</span>
                             </div>
-                        </div>
-
-                        <!-- Group Race Category Selection -->
-                        <div class="mt-6">
-                            <h5 class="text-lg font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Race Category</h5>
-                            <select class="w-full p-3 border rounded bg-gray-50">
-                                <option value="">Select Group Category</option>
-                                <option value="corporate-team">Corporate Team Challenge (50km)</option>
-                                <option value="school-team">School Team Challenge (varies by age group)</option>
-                                <option value="government-team">Government Team Challenge (50km)</option>
-                            </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- Common Fields for Both Forms -->
+                <!-- Emergency Contact (Common to both forms) -->
                 <div class="space-y-4">
                     <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Emergency Contact</h4>
                     <input type="text" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
                     <input type="tel" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
                 </div>
 
-                <!-- Terms and Conditions -->
-                <div class="flex items-center">
-                    <input type="checkbox" id="terms" class="mr-2" required>
-                    <label for="terms" class="text-sm">I agree to the <a href="#" class="text-[#E52D2F]">terms and conditions</a> and <a href="#" class="text-[#E52D2F]">waiver</a></label>
+                <!-- M-Pesa Payment Section (Common to both forms) -->
+                <div class="mpesa-box p-4 rounded-lg mt-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fab fa-cc-m-pesa text-4xl text-green-600 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold text-lg">Pay with M-Pesa</h4>
+                            <p class="text-sm text-gray-600">You'll receive a payment request on your phone</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>Amount to Pay:</span>
+                            <span id="mpesaAmount" class="font-bold">3,000 KES</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Payment Method:</span>
+                            <span class="font-bold">Lipa Na M-Pesa</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Paybill Number:</span>
+                            <span class="font-bold">123456</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Account Number:</span>
+                            <span class="font-bold">NFL2025</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="bg-[#E52D2F] hover:bg-[#E52D2F] text-white px-6 py-3 rounded w-full font-bold transition duration-300">
-                    Complete Registration
-                </button>
+                <!-- Terms and Payment Confirmation (Common to both forms) -->
+                <div class="mt-6">
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" class="mt-1 mr-2" required>
+                        <label for="terms" class="text-sm">
+                            I confirm that the phone number provided is correct for M-Pesa payment and I agree to the
+                            <a href="#" class="text-[#E52D2F] underline">terms and conditions</a>.
+                        </label>
+                    </div>
+                    <div class="flex items-start mt-3">
+                        <input type="checkbox" id="payment-confirm" class="mt-1 mr-2" required>
+                        <label for="payment-confirm" class="text-sm">
+                            I understand that <span id="confirmAmount">3,000 KES</span> will be deducted from my M-Pesa account upon submission.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button (Common to both forms) -->
+                <div class="mt-8">
+                    <button type="submit" class="bg-[#E52D2F] hover:bg-[#c22525] text-white px-6 py-3 rounded w-full font-bold flex items-center justify-center">
+                        <i class="fab fa-cc-m-pesa mr-2 text-xl"></i> Pay <span id="submitAmount">3,000 KES</span> via M-Pesa
+                    </button>
+                </div>
             </form>
         </div>
     </section>
 
     <!-- Footer Section -->
     <footer class="bg-[#E52D2F] text-white py-8 mt-12">
-        <div class="container mx-auto px-4 md:px-16 lg:px-24">
+        <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <!-- Logo and Description -->
                 <div class="mb-4 md:mb-0 text-center md:text-left">
-                    <h2 class="text-2xl font-bold">Nairobi Marathon</h2>
-                    <p class="mt-2 text-sm text-gray-300">Join the run, support a cause, and experience Nairobi's vibrant spirit.</p>
+                    <h2 class="text-2xl font-bold">No Finish Line Nairobi</h2>
+                    <p class="mt-2 text-sm text-gray-300">Keep Moving, Never Quit or Give Up</p>
                 </div>
-                <!-- Social Media Links -->
-                <div class="flex space-x-4 mt-4 md:mt-0 text-center md:text-left">
-                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook fa-lg"></i></a>
-                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-youtube fa-lg"></i></a>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-yellow-300"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-300"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-300"><i class="fab fa-instagram fa-lg"></i></a>
                 </div>
             </div>
-
-            <hr class="my-4 border-gray-600">
-
-            <!-- Copyright -->
-            <div class="text-center text-sm text-gray-400">
-                <p>&copy; 2025 Nairobi Marathon. All rights reserved. | Designed by Nairobi Marathon Team</p>
+            <hr class="my-6 border-gray-600">
+            <div class="text-center text-sm text-gray-300">
+                <p>&copy;No Finish Line Nairobi. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -353,53 +339,76 @@
                 mobileMenu.classList.add("hidden");
             };
 
-            // Toggle between individual and group registration
-            document.getElementById('individualBtn').addEventListener('click', function() {
-                this.classList.add('active');
-                document.getElementById('groupBtn').classList.remove('active');
-                document.getElementById('individualForm').classList.remove('hidden');
-                document.getElementById('groupForm').classList.add('hidden');
+            // Calculate total amount based on participants
+            const participantInput = document.getElementById('participantCount');
+            participantInput.addEventListener('input', function() {
+                const count = parseInt(this.value) || 1;
+                updateAmountDisplay(count);
             });
 
-            document.getElementById('groupBtn').addEventListener('click', function() {
-                this.classList.add('active');
-                document.getElementById('individualBtn').classList.remove('active');
-                document.getElementById('individualForm').classList.add('hidden');
-                document.getElementById('groupForm').classList.remove('hidden');
+            function updateAmountDisplay(count) {
+                const feePerPerson = 3000;
+                const totalAmount = count * feePerPerson;
+
+                // Update all relevant displays
+                document.getElementById('displayParticipantCount').textContent = count;
+                document.getElementById('totalAmount').textContent = totalAmount.toLocaleString() + ' KES';
+                document.getElementById('mpesaAmount').textContent = totalAmount.toLocaleString() + ' KES';
+                document.getElementById('confirmAmount').textContent = totalAmount.toLocaleString() + ' KES';
+                document.getElementById('submitAmount').textContent = totalAmount.toLocaleString() + ' KES';
+            }
+
+            // Form submission for M-Pesa
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const phoneInput = document.querySelector('input[type="tel"]');
+                const participantCount = parseInt(document.getElementById('participantCount').value) || 1;
+                const totalAmount = participantCount * 3000;
+
+                if (!phoneInput.value || phoneInput.value.length < 9) {
+                    alert('Please enter a valid M-Pesa phone number');
+                    return;
+                }
+
+                // Simulate payment processing
+                alert(`M-Pesa payment request for ${totalAmount.toLocaleString()} KES sent to ${phoneInput.value}. Complete payment to finish registration.`);
+
+                // In a real implementation, you would call your payment API here
+                // processMpesaPayment(phoneInput.value, totalAmount);
             });
 
-            // Handle group type selection
-            const groupTypeButtons = document.querySelectorAll('[data-group-type]');
-            groupTypeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    groupTypeButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Show group details section
-                    document.getElementById('groupDetails').classList.remove('hidden');
-                    
-                    // Hide all group forms
-                    document.getElementById('schoolsForm').classList.add('hidden');
-                    document.getElementById('governmentForm').classList.add('hidden');
-                    document.getElementById('corporateForm').classList.add('hidden');
-                    
-                    // Show selected group form
-                    const groupType = this.getAttribute('data-group-type');
-                    document.getElementById(`${groupType}Form`).classList.remove('hidden');
-                });
-            });
-
-            // Check URL hash and show appropriate form
+            // Handle URL hash
             if (window.location.hash === '#groupForm') {
-                document.getElementById('individualBtn').classList.remove('active');
-                document.getElementById('groupBtn').classList.add('active');
-                document.getElementById('individualForm').classList.add('hidden');
-                document.getElementById('groupForm').classList.remove('hidden');
+                showGroupForm();
             }
         });
+
+        function showIndividualForm() {
+            document.getElementById('individualTab').classList.remove('inactive');
+            document.getElementById('individualTab').classList.add('active');
+            document.getElementById('groupTab').classList.remove('active');
+            document.getElementById('groupTab').classList.add('inactive');
+            document.getElementById('individualForm').classList.remove('hidden');
+            document.getElementById('groupForm').classList.add('hidden');
+
+            // Reset amount displays for individual registration
+            document.getElementById('mpesaAmount').textContent = '3,000 KES';
+            document.getElementById('confirmAmount').textContent = '3,000 KES';
+            document.getElementById('submitAmount').textContent = '3,000 KES';
+        }
+
+        function showGroupForm() {
+            document.getElementById('groupTab').classList.remove('inactive');
+            document.getElementById('groupTab').classList.add('active');
+            document.getElementById('individualTab').classList.remove('active');
+            document.getElementById('individualTab').classList.add('inactive');
+            document.getElementById('groupForm').classList.remove('hidden');
+            document.getElementById('individualForm').classList.add('hidden');
+
+            // Calculate initial amount for group registration
+            const initialCount = parseInt(document.getElementById('participantCount').value) || 1;
+            updateAmountDisplay(initialCount);
+        }
     </script>
 </body>
 </html>
