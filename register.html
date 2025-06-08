@@ -339,7 +339,7 @@
                 mobileMenu.classList.add("hidden");
             };
 
-            // Calculate total amount based on participants
+           /* // Calculate total amount based on participants
             const participantInput = document.getElementById('participantCount');
             participantInput.addEventListener('input', function() {
                 const count = parseInt(this.value) || 1;
@@ -356,9 +356,9 @@
                 document.getElementById('mpesaAmount').textContent = totalAmount.toLocaleString() + ' KES';
                 document.getElementById('confirmAmount').textContent = totalAmount.toLocaleString() + ' KES';
                 document.getElementById('submitAmount').textContent = totalAmount.toLocaleString() + ' KES';
-            }
+            }*/
 
-            // Form submission for M-Pesa
+            /*// Form submission for M-Pesa
             document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const phoneInput = document.querySelector('input[type="tel"]');
@@ -375,15 +375,15 @@
 
                 // In a real implementation, you would call your payment API here
                 // processMpesaPayment(phoneInput.value, totalAmount);
-            });
+            });*/
 
-            // Handle URL hash
+            /*// Handle URL hash
             if (window.location.hash === '#groupForm') {
                 showGroupForm();
-            }
+            }*/
         });
 
-        function showIndividualForm() {
+        /*function showIndividualForm() {
             document.getElementById('individualTab').classList.remove('inactive');
             document.getElementById('individualTab').classList.add('active');
             document.getElementById('groupTab').classList.remove('active');
@@ -395,9 +395,9 @@
             document.getElementById('mpesaAmount').textContent = '3,000 KES';
             document.getElementById('confirmAmount').textContent = '3,000 KES';
             document.getElementById('submitAmount').textContent = '3,000 KES';
-        }
+        }*/
 
-        function showGroupForm() {
+        /*function showGroupForm() {
             document.getElementById('groupTab').classList.remove('inactive');
             document.getElementById('groupTab').classList.add('active');
             document.getElementById('individualTab').classList.remove('active');
@@ -408,7 +408,8 @@
             // Calculate initial amount for group registration
             const initialCount = parseInt(document.getElementById('participantCount').value) || 1;
             updateAmountDisplay(initialCount);
-        }
+        }*/
     </script>
+    <script src="js/registration.js"></script>
 </body>
 </html>
