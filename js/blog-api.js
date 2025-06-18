@@ -1,6 +1,6 @@
 // Base API configuration
 const BlogAPI = {
-  baseUrl: 'https://your-api-endpoint.com/api',
+  baseUrl: 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : ''
