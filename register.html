@@ -87,6 +87,14 @@
             background-color: #f3f4f6;
             color: #6b7280;
         }
+        .error-message {
+            color: #E52D2F;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .input-error {
+            border-color: #E52D2F;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
@@ -155,16 +163,28 @@
                 </div>
             </div>
 
-            <form class="space-y-6 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <form id="registrationForm" class="space-y-6 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
                 <!-- Individual Registration Form -->
                 <div id="individualForm" class="registration-section">
                     <!-- Personal Information -->
                     <div class="space-y-4">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Personal Information</h4>
-                        <input type="text" placeholder="Full Name" class="w-full p-3 border rounded" required>
-                        <input type="email" placeholder="Email" class="w-full p-3 border rounded" required>
-                        <input type="tel" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
-                        <input type="date" placeholder="Date of Birth" class="w-full p-3 border rounded" required>
+                        <div>
+                            <input type="text" id="fullName" placeholder="Full Name" class="w-full p-3 border rounded" required>
+                            <div id="fullNameError" class="error-message hidden">Please enter your full name</div>
+                        </div>
+                        <div>
+                            <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded" required>
+                            <div id="emailError" class="error-message hidden">Please enter a valid email address</div>
+                        </div>
+                        <div>
+                            <input type="tel" id="phone" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
+                            <div id="phoneError" class="error-message hidden">Please enter a valid phone number</div>
+                        </div>
+                        <div>
+                            <input type="date" id="dob" placeholder="Date of Birth" class="w-full p-3 border rounded" required>
+                            <div id="dobError" class="error-message hidden">Please enter your date of birth</div>
+                        </div>
                     </div>
 
                     <!-- Race Categories -->
@@ -172,7 +192,7 @@
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Select Your Category</h4>
 
                         <div class="mb-4">
-                            <select class="w-full p-3 border rounded bg-gray-50" required>
+                            <select id="raceCategory" class="w-full p-3 border rounded bg-gray-50" required>
                                 <option value="">Select Your Race Category</option>
                                 <option value="u13">Children U13: 3km</option>
                                 <option value="u15">Children U15: 5km</option>
@@ -181,6 +201,7 @@
                                 <option value="adult">Adult: 50km</option>
                                 <option value="veteran">Veteran: 30-50km</option>
                             </select>
+                            <div id="categoryError" class="error-message hidden">Please select a race category</div>
                         </div>
                     </div>
 
@@ -205,14 +226,23 @@
                 <div id="groupForm" class="registration-section hidden">
                     <div class="mb-6">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Information</h4>
-                        <select class="w-full p-3 border rounded mb-4">
-                            <option value="">Select Group Type</option>
-                            <option value="school">School/University</option>
-                            <option value="government">Government</option>
-                            <option value="corporate">Corporate</option>
-                        </select>
-                        <input type="text" placeholder="Organization Name" class="w-full p-3 border rounded mb-4">
-                        <input type="number" id="participantCount" placeholder="Number of Participants" class="w-full p-3 border rounded" min="1" value="1">
+                        <div class="mb-4">
+                            <select id="groupType" class="w-full p-3 border rounded">
+                                <option value="">Select Group Type</option>
+                                <option value="school">School/University</option>
+                                <option value="government">Government</option>
+                                <option value="corporate">Corporate</option>
+                            </select>
+                            <div id="groupTypeError" class="error-message hidden">Please select a group type</div>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" id="organizationName" placeholder="Organization Name" class="w-full p-3 border rounded">
+                            <div id="organizationError" class="error-message hidden">Please enter your organization name</div>
+                        </div>
+                        <div>
+                            <input type="number" id="participantCount" placeholder="Number of Participants" class="w-full p-3 border rounded" min="1" value="1">
+                            <div id="participantError" class="error-message hidden">Please enter a valid number of participants</div>
+                        </div>
                     </div>
 
                     <!-- Group Payment Summary -->
@@ -239,8 +269,14 @@
                 <!-- Emergency Contact (Common to both forms) -->
                 <div class="space-y-4">
                     <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Emergency Contact</h4>
-                    <input type="text" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
-                    <input type="tel" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
+                    <div>
+                        <input type="text" id="emergencyName" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
+                        <div id="emergencyNameError" class="error-message hidden">Please enter emergency contact name</div>
+                    </div>
+                    <div>
+                        <input type="tel" id="emergencyPhone" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
+                        <div id="emergencyPhoneError" class="error-message hidden">Please enter emergency contact phone</div>
+                    </div>
                 </div>
 
                 <!-- M-Pesa Payment Section (Common to both forms) -->
@@ -281,12 +317,14 @@
                             <a href="#" class="text-[#E52D2F] underline">terms and conditions</a>.
                         </label>
                     </div>
+                    <div id="termsError" class="error-message hidden">You must agree to the terms and conditions</div>
                     <div class="flex items-start mt-3">
                         <input type="checkbox" id="payment-confirm" class="mt-1 mr-2" required>
                         <label for="payment-confirm" class="text-sm">
                             I understand that <span id="confirmAmount">3,000 KES</span> will be deducted from my M-Pesa account upon submission.
                         </label>
                     </div>
+                    <div id="paymentConfirmError" class="error-message hidden">You must confirm the payment amount</div>
                 </div>
 
                 <!-- Submit Button (Common to both forms) -->
@@ -341,12 +379,14 @@
                 mobileMenu.classList.add("hidden");
             };
 
-           /* // Calculate total amount based on participants
+            // Calculate total amount based on participants
             const participantInput = document.getElementById('participantCount');
-            participantInput.addEventListener('input', function() {
-                const count = parseInt(this.value) || 1;
-                updateAmountDisplay(count);
-            });
+            if (participantInput) {
+                participantInput.addEventListener('input', function() {
+                    const count = parseInt(this.value) || 1;
+                    updateAmountDisplay(count);
+                });
+            }
 
             function updateAmountDisplay(count) {
                 const feePerPerson = 3000;
@@ -358,34 +398,193 @@
                 document.getElementById('mpesaAmount').textContent = totalAmount.toLocaleString() + ' KES';
                 document.getElementById('confirmAmount').textContent = totalAmount.toLocaleString() + ' KES';
                 document.getElementById('submitAmount').textContent = totalAmount.toLocaleString() + ' KES';
-            }*/
+            }
 
-            /*// Form submission for M-Pesa
-            document.querySelector('form').addEventListener('submit', function(e) {
+            // Form submission for M-Pesa
+            document.getElementById('registrationForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                const phoneInput = document.querySelector('input[type="tel"]');
-                const participantCount = parseInt(document.getElementById('participantCount').value) || 1;
-                const totalAmount = participantCount * 3000;
+                let isValid = true;
 
-                if (!phoneInput.value || phoneInput.value.length < 9) {
-                    alert('Please enter a valid M-Pesa phone number');
-                    return;
+                // Validate individual form if visible
+                if (!document.getElementById('individualForm').classList.contains('hidden')) {
+                    isValid = validateIndividualForm() && isValid;
                 }
 
-                // Simulate payment processing
-                alert(`M-Pesa payment request for ${totalAmount.toLocaleString()} KES sent to ${phoneInput.value}. Complete payment to finish registration.`);
+                // Validate group form if visible
+                if (!document.getElementById('groupForm').classList.contains('hidden')) {
+                    isValid = validateGroupForm() && isValid;
+                }
 
-                // In a real implementation, you would call your payment API here
-                // processMpesaPayment(phoneInput.value, totalAmount);
-            });*/
+                // Validate common fields
+                isValid = validateCommonFields() && isValid;
 
-            /*// Handle URL hash
+                if (isValid) {
+                    const phoneInput = document.getElementById('phone');
+                    const participantCount = document.getElementById('participantCount') ?
+                        parseInt(document.getElementById('participantCount').value) || 1 : 1;
+                    const totalAmount = participantCount * 3000;
+
+                    // Simulate payment processing
+                    alert(`M-Pesa payment request for ${totalAmount.toLocaleString()} KES sent to ${phoneInput.value}. Complete payment to finish registration.`);
+
+                    // In a real implementation, you would call your payment API here
+                    // processMpesaPayment(phoneInput.value, totalAmount);
+                }
+            });
+
+            // Handle URL hash
             if (window.location.hash === '#groupForm') {
                 showGroupForm();
-            }*/
+            }
         });
 
-        /*function showIndividualForm() {
+        function validateIndividualForm() {
+            let isValid = true;
+
+            // Validate full name
+            const fullName = document.getElementById('fullName');
+            if (!fullName.value.trim()) {
+                document.getElementById('fullNameError').classList.remove('hidden');
+                fullName.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('fullNameError').classList.add('hidden');
+                fullName.classList.remove('input-error');
+            }
+
+            // Validate email
+            const email = document.getElementById('email');
+            if (!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)) {
+                document.getElementById('emailError').classList.remove('hidden');
+                email.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('emailError').classList.add('hidden');
+                email.classList.remove('input-error');
+            }
+
+            // Validate phone
+            const phone = document.getElementById('phone');
+            if (!phone.value.trim() || phone.value.length < 9) {
+                document.getElementById('phoneError').classList.remove('hidden');
+                phone.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('phoneError').classList.add('hidden');
+                phone.classList.remove('input-error');
+            }
+
+            // Validate date of birth
+            const dob = document.getElementById('dob');
+            if (!dob.value) {
+                document.getElementById('dobError').classList.remove('hidden');
+                dob.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('dobError').classList.add('hidden');
+                dob.classList.remove('input-error');
+            }
+
+            // Validate race category
+            const raceCategory = document.getElementById('raceCategory');
+            if (!raceCategory.value) {
+                document.getElementById('categoryError').classList.remove('hidden');
+                raceCategory.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('categoryError').classList.add('hidden');
+                raceCategory.classList.remove('input-error');
+            }
+
+            return isValid;
+        }
+
+        function validateGroupForm() {
+            let isValid = true;
+
+            // Validate group type
+            const groupType = document.getElementById('groupType');
+            if (!groupType.value) {
+                document.getElementById('groupTypeError').classList.remove('hidden');
+                groupType.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('groupTypeError').classList.add('hidden');
+                groupType.classList.remove('input-error');
+            }
+
+            // Validate organization name
+            const organizationName = document.getElementById('organizationName');
+            if (!organizationName.value.trim()) {
+                document.getElementById('organizationError').classList.remove('hidden');
+                organizationName.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('organizationError').classList.add('hidden');
+                organizationName.classList.remove('input-error');
+            }
+
+            // Validate participant count
+            const participantCount = document.getElementById('participantCount');
+            if (!participantCount.value || parseInt(participantCount.value) < 1) {
+                document.getElementById('participantError').classList.remove('hidden');
+                participantCount.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('participantError').classList.add('hidden');
+                participantCount.classList.remove('input-error');
+            }
+
+            return isValid;
+        }
+
+        function validateCommonFields() {
+            let isValid = true;
+
+            // Validate emergency contact name
+            const emergencyName = document.getElementById('emergencyName');
+            if (!emergencyName.value.trim()) {
+                document.getElementById('emergencyNameError').classList.remove('hidden');
+                emergencyName.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('emergencyNameError').classList.add('hidden');
+                emergencyName.classList.remove('input-error');
+            }
+
+            // Validate emergency contact phone
+            const emergencyPhone = document.getElementById('emergencyPhone');
+            if (!emergencyPhone.value.trim() || emergencyPhone.value.length < 9) {
+                document.getElementById('emergencyPhoneError').classList.remove('hidden');
+                emergencyPhone.classList.add('input-error');
+                isValid = false;
+            } else {
+                document.getElementById('emergencyPhoneError').classList.add('hidden');
+                emergencyPhone.classList.remove('input-error');
+            }
+
+            // Validate terms checkbox
+            const terms = document.getElementById('terms');
+            if (!terms.checked) {
+                document.getElementById('termsError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('termsError').classList.add('hidden');
+            }
+
+            // Validate payment confirmation checkbox
+            const paymentConfirm = document.getElementById('payment-confirm');
+            if (!paymentConfirm.checked) {
+                document.getElementById('paymentConfirmError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('paymentConfirmError').classList.add('hidden');
+            }
+
+            return isValid;
+        }
+
+        function showIndividualForm() {
             document.getElementById('individualTab').classList.remove('inactive');
             document.getElementById('individualTab').classList.add('active');
             document.getElementById('groupTab').classList.remove('active');
@@ -397,9 +596,9 @@
             document.getElementById('mpesaAmount').textContent = '3,000 KES';
             document.getElementById('confirmAmount').textContent = '3,000 KES';
             document.getElementById('submitAmount').textContent = '3,000 KES';
-        }*/
+        }
 
-        /*function showGroupForm() {
+        function showGroupForm() {
             document.getElementById('groupTab').classList.remove('inactive');
             document.getElementById('groupTab').classList.add('active');
             document.getElementById('individualTab').classList.remove('active');
@@ -410,8 +609,19 @@
             // Calculate initial amount for group registration
             const initialCount = parseInt(document.getElementById('participantCount').value) || 1;
             updateAmountDisplay(initialCount);
-        }*/
+        }
+
+        function updateAmountDisplay(count) {
+            const feePerPerson = 3000;
+            const totalAmount = count * feePerPerson;
+
+            // Update all relevant displays
+            document.getElementById('displayParticipantCount').textContent = count;
+            document.getElementById('totalAmount').textContent = totalAmount.toLocaleString() + ' KES';
+            document.getElementById('mpesaAmount').textContent = totalAmount.toLocaleString() + ' KES';
+            document.getElementById('confirmAmount').textContent = totalAmount.toLocaleString() + ' KES';
+            document.getElementById('submitAmount').textContent = totalAmount.toLocaleString() + ' KES';
+        }
     </script>
-    <script src="js/registration.js"></script>
 </body>
 </html>
