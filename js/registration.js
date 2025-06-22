@@ -6,8 +6,8 @@ class RegistrationApp {
 
   initEventListeners() {
     // Form tab switching
-    document.getElementById('individualTab').addEventListener('click', () => this.showIndividualForm());
-    document.getElementById('groupTab').addEventListener('click', () => this.showGroupForm());
+    document.getElementById('individualTab')?.addEventListener('click', () => this.showIndividualForm());
+    document.getElementById('groupTab')?.addEventListener('click', () => this.showGroupForm());
 
     // Participant count change
     const participantInput = document.getElementById('participantCount');
@@ -69,7 +69,7 @@ class RegistrationApp {
     const isGroupForm = !document.getElementById('groupForm').classList.contains('hidden');
     const phoneInput = document.querySelector('input[type="tel"]');
 
-    if (!phoneInput.value || phoneInput.value.length < 9) {
+    if (!phoneInput?.value || phoneInput.value.length < 9) {
       alert('Please enter a valid M-Pesa phone number');
       return;
     }
@@ -87,12 +87,12 @@ class RegistrationApp {
         response = await this.submitIndividualRegistration();
       }
 
-      if (response.success) {
+      if (response?.success) {
         alert(`M-Pesa payment request sent to ${phoneInput.value}. Please complete the payment on your phone.`);
         // Optionally redirect to confirmation page
         // window.location.href = '/registration-success.html';
       } else {
-        throw new Error(response.message || 'Registration failed');
+        throw new Error(response?.message || 'Registration failed');
       }
     } catch (error) {
       console.error('Registration error:', error);
@@ -105,16 +105,21 @@ class RegistrationApp {
 
   async submitIndividualRegistration() {
     const formData = {
-      fullName: document.querySelector('#individualForm input[placeholder="Full Name"]').value,
-      email: document.querySelector('#individualForm input[placeholder="Email"]').value,
-      phone: document.querySelector('#individualForm input[placeholder="Phone Number"]').value,
-      dateOfBirth: document.querySelector('#individualForm input[type="date"]').value,
-      raceCategory: document.querySelector('#individualForm select').value,
+      fullName: document.querySelector('input[placeholder="Full Name"]')?.value,
+      email: document.querySelector('input[placeholder="Email"]')?.value,
+      phone: document.querySelector('input[placeholder="Phone Number (for M-Pesa payment)"]')?.value,
+      dateOfBirth: document.querySelector('input[type="date"]')?.value,
+      raceCategory: document.querySelector('select')?.value,
       emergencyContact: {
-        name: document.querySelector('#individualForm input[placeholder="Emergency Contact Name"]').value,
-        phone: document.querySelector('#individualForm input[placeholder="Emergency Contact Phone"]').value
+        name: document.querySelector('input[placeholder="Emergency Contact Name"]')?.value,
+        phone: document.querySelector('input[placeholder="Emergency Contact Phone"]')?.value
       }
     };
+
+    // Validate required fields
+    if (!formData.fullName || !formData.email || !formData.phone || !formData.dateOfBirth || !formData.raceCategory) {
+      throw new Error('Please fill in all required fields');
+    }
 
     const response = await fetch(`${this.apiBaseUrl}/registrations/individual`, {
       method: 'POST',
@@ -129,12 +134,17 @@ class RegistrationApp {
 
   async submitGroupRegistration() {
     const formData = {
-      groupType: document.querySelector('#groupForm select').value,
-      organizationName: document.querySelector('#groupForm input[placeholder="Organization Name"]').value,
-      totalParticipants: parseInt(document.getElementById('participantCount').value) || 1,
-      contactPerson: document.querySelector('#groupForm input[placeholder="Emergency Contact Name"]').value,
-      contactPhone: document.querySelector('#groupForm input[placeholder="Emergency Contact Phone"]').value
+      groupType: document.querySelector('#groupForm select')?.value,
+      organizationName: document.querySelector('#groupForm input[placeholder="Organization Name"]')?.value,
+      totalParticipants: parseInt(document.getElementById('participantCount')?.value) || 1,
+      contactPerson: document.querySelector('input[placeholder="Emergency Contact Name"]')?.value,
+      contactPhone: document.querySelector('input[placeholder="Emergency Contact Phone"]')?.value
     };
+
+    // Validate required fields
+    if (!formData.groupType || !formData.organizationName || !formData.contactPerson || !formData.contactPhone) {
+      throw new Error('Please fill in all required fields');
+    }
 
     const response = await fetch(`${this.apiBaseUrl}/registrations/group`, {
       method: 'POST',
@@ -154,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle URL hash for direct linking to group form
   if (window.location.hash === '#groupForm') {
-    document.getElementById('groupTab').click();
+    const groupTab = document.getElementById('groupTab');
+    if (groupTab) groupTab.click();
   }
 });
