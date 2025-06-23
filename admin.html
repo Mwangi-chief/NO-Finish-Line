@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Blog Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar.collapsed {
+            width: 80px;
+        }
+        .sidebar.collapsed .sidebar-text {
+            display: none;
+        }
+        .sidebar.collapsed .logo-text {
+            display: none;
+        }
+        .content {
+            transition: all 0.3s ease;
+        }
+        .content.expanded {
+            margin-left: 80px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar bg-[#E52D2F] text-white w-64 fixed h-full flex flex-col">
+            <div class="p-4 flex items-center space-x-2">
+                <img src="../asset/nfl-logo-transparent.png" alt="Logo" class="h-10">
+                <span class="logo-text text-xl font-bold">NFL Admin</span>
+            </div>
+            <nav class="flex-1 mt-6">
+                <a href="#" class="block py-3 px-4 hover:bg-red-700 flex items-center" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+                <a href="#" class="block py-3 px-4 hover:bg-red-700 flex items-center" onclick="showSection('blogPosts')">
+                    <i class="fas fa-newspaper mr-3"></i>
+                    <span class="sidebar-text">Blog Posts</span>
+                </a>
+                <a href="#" class="block py-3 px-4 hover:bg-red-700 flex items-center" onclick="showSection('impactStories')">
+                    <i class="fas fa-heart mr-3"></i>
+                    <span class="sidebar-text">Impact Stories</span>
+                </a>
+                <a href="#" class="block py-3 px-4 hover:bg-red-700 flex items-center" onclick="showSection('clinics')">
+                    <i class="fas fa-clinic-medical mr-3"></i>
+                    <span class="sidebar-text">Clinics</span>
+                </a>
+                <a href="#" class="block py-3 px-4 hover:bg-red-700 flex items-center" onclick="showSection('challenges')">
+                    <i class="fas fa-trophy mr-3"></i>
+                    <span class="sidebar-text">Challenges</span>
+                </a>
+            </nav>
+            <div class="p-4">
+                <button onclick="toggleSidebar()" class="w-full py-2 px-4 bg-red-700 rounded flex items-center justify-center">
+                    <i class="fas fa-chevron-left"></i>
+                    <span class="sidebar-text ml-2">Collapse</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="content" class="content flex-1 ml-64">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+                <h1 id="sectionTitle" class="text-2xl font-bold text-gray-800">Dashboard</h1>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
+                        <i class="fas fa-bell text-gray-600"></i>
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
+                        <span class="font-medium">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <div id="dashboardSection" class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-medium text-gray-500">Blog Posts</h3>
+                        <p id="blogPostCount" class="text-3xl font-bold text-[#E52D2F]">0</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-medium text-gray-500">Impact Stories</h3>
+                        <p id="impactStoryCount" class="text-3xl font-bold text-[#E52D2F]">0</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-medium text-gray-500">Upcoming Clinics</h3>
+                        <p id="clinicCount" class="text-3xl font-bold text-[#E52D2F]">0</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-medium text-gray-500">Challenge Entries</h3>
+                        <p id="challengeCount" class="text-3xl font-bold text-[#E52D2F]">0</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-medium mb-4">Recent Activity</h3>
+                    <div id="recentActivity" class="space-y-4">
+                        <!-- Activity items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Posts Section -->
+            <div id="blogPostsSection" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Blog Posts</h2>
+                    <button onclick="showBlogPostForm()" class="bg-[#E52D2F] text-white px-4 py-2 rounded-lg">
+                        <i class="fas fa-plus mr-2"></i> New Post
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blogPostsTable" class="bg-white divide-y divide-gray-200">
+                            <!-- Blog posts will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Blog Post Form (Modal) -->
+            <div id="blogPostModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="blogPostModalTitle" class="text-xl font-bold">New Blog Post</h3>
+                            <button onclick="hideBlogPostForm()" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="blogPostForm" enctype="multipart/form-data">
+                            <input type="hidden" id="blogPostId">
+                            <div class="mb-4">
+                                <label for="blogPostTitle" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                                <input type="text" id="blogPostTitle" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]">
+                            </div>
+                            <div class="mb-4">
+                                <label for="blogPostExcerpt" class="block text-sm font-medium text-gray-700 mb-1">Excerpt</label>
+                                <textarea id="blogPostExcerpt" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="blogPostContent" class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                                <textarea id="blogPostContent" rows="10" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="blogPostImage" class="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
+                                <input type="file" id="blogPostImage" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <div id="blogPostImagePreview" class="mt-2 hidden">
+                                    <img id="blogPostImagePreviewImg" src="#" alt="Preview" class="max-w-xs max-h-40">
+                                </div>
+                            </div>
+                            <div class="flex justify-end space-x-3">
+                                <button type="button" onclick="hideBlogPostForm()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Cancel</button>
+                                <button type="submit" class="px-4 py-2 bg-[#E52D2F] text-white rounded-md hover:bg-red-700">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Stories Section -->
+            <div id="impactStoriesSection" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Impact Stories</h2>
+                    <button onclick="showImpactStoryForm()" class="bg-[#E52D2F] text-white px-4 py-2 rounded-lg">
+                        <i class="fas fa-plus mr-2"></i> New Story
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="impactStoriesTable" class="bg-white divide-y divide-gray-200">
+                            <!-- Impact stories will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Impact Story Form (Modal) -->
+            <div id="impactStoryModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="impactStoryModalTitle" class="text-xl font-bold">New Impact Story</h3>
+                            <button onclick="hideImpactStoryForm()" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="impactStoryForm" enctype="multipart/form-data">
+                            <input type="hidden" id="impactStoryId">
+                            <div class="mb-4">
+                                <label for="impactStoryTitle" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                                <input type="text" id="impactStoryTitle" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]">
+                            </div>
+                            <div class="mb-4">
+                                <label for="impactStoryExcerpt" class="block text-sm font-medium text-gray-700 mb-1">Excerpt</label>
+                                <textarea id="impactStoryExcerpt" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="impactStoryContent" class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                                <textarea id="impactStoryContent" rows="10" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="impactStoryImage" class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+                                <input type="file" id="impactStoryImage" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <div id="impactStoryImagePreview" class="mt-2 hidden">
+                                    <img id="impactStoryImagePreviewImg" src="#" alt="Preview" class="max-w-xs max-h-40">
+                                </div>
+                            </div>
+                            <div class="flex justify-end space-x-3">
+                                <button type="button" onclick="hideImpactStoryForm()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Cancel</button>
+                                <button type="submit" class="px-4 py-2 bg-[#E52D2F] text-white rounded-md hover:bg-red-700">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinics Section -->
+            <div id="clinicsSection" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Mental Health Clinics</h2>
+                    <button onclick="showClinicForm()" class="bg-[#E52D2F] text-white px-4 py-2 rounded-lg">
+                        <i class="fas fa-plus mr-2"></i> New Clinic
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clinicsTable" class="bg-white divide-y divide-gray-200">
+                            <!-- Clinics will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Clinic Form (Modal) -->
+            <div id="clinicModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="clinicModalTitle" class="text-xl font-bold">New Clinic</h3>
+                            <button onclick="hideClinicForm()" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="clinicForm" enctype="multipart/form-data">
+                            <input type="hidden" id="clinicId">
+                            <div class="mb-4">
+                                <label for="clinicTitle" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                                <input type="text" id="clinicTitle" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]">
+                            </div>
+                            <div class="mb-4">
+                                <label for="clinicDescription" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <textarea id="clinicDescription" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="clinicDate" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                                <input type="datetime-local" id="clinicDate" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]">
+                            </div>
+                            <div class="mb-4">
+                                <label for="clinicLocation" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                                <input type="text" id="clinicLocation" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E52D2F]">
+                            </div>
+                            <div class="mb-4">
+                                <label for="clinicImage" class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+                                <input type="file" id="clinicImage" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <div id="clinicImagePreview" class="mt-2 hidden">
+                                    <img id="clinicImagePreviewImg" src="#" alt="Preview" class="max-w-xs max-h-40">
+                                </div>
+                            </div>
+                            <div class="flex justify-end space-x-3">
+                                <button type="button" onclick="hideClinicForm()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Cancel</button>
+                                <button type="submit" class="px-4 py-2 bg-[#E52D2F] text-white rounded-md hover:bg-red-700">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenges Section -->
+            <div id="challengesSection" class="p-6 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Challenge Entries</h2>
+                </div>
+
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Social Media URL</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="challengesTable" class="bg-white divide-y divide-gray-200">
+                            <!-- Challenge entries will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

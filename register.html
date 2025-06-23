@@ -95,10 +95,51 @@
         .input-error {
             border-color: #E52D2F;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-modal:hover {
+            color: black;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #E52D2F;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
-    <!-- Navigation Bar -->
     <header class="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md relative z-50">
         <img src="asset/nfl-logo-transparent.png" alt="No Finish Line Logo" class="h-16 bg-[#E52D2F] p-2">
         <button id="menuToggle" class="text-white text-2xl md:hidden focus:outline-none">
@@ -123,7 +164,6 @@
         </nav>
     </header>
 
-    <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="mobile-menu md:hidden absolute bg-[#E52D2F] text-white w-3/4 right-0 p-2 rounded-md hidden z-50 max-w-xs">
         <a href="index.html" class="block py-2" onclick="closeMenu()">Home</a>
         <a href="about.html" class="block py-2" onclick="closeMenu()">About</a>
@@ -136,24 +176,20 @@
         <a href="contact.html" class="block py-2" onclick="closeMenu()">Contact</a>
     </div>
 
-    <!-- Register Hero Section -->
     <section class="register-hero relative">
         <div class="overlay"></div>
         <div class="hero-text">Register for No Finish Line Nairobi</div>
     </section>
 
-    <!-- Register Form Section -->
     <section class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
             <h3 class="text-3xl font-bold mb-4 text-center">Registration Form</h3>
 
-            <!-- Single Clear Fee Notice -->
             <div class="fee-notice max-w-2xl mx-auto mb-8">
                 <p class="font-semibold text-[#E52D2F]">Registration Fee: 3,000 KES per participant</p>
                 <p class="text-sm text-gray-600 mt-1">Choose your registration type below</p>
             </div>
 
-            <!-- Registration Type Tabs -->
             <div class="flex justify-center space-x-4 mb-8">
                 <div id="individualTab" class="registration-tab active" onclick="showIndividualForm()">
                     Individual Registration
@@ -164,9 +200,7 @@
             </div>
 
             <form id="registrationForm" class="space-y-6 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                <!-- Individual Registration Form -->
                 <div id="individualForm" class="registration-section">
-                    <!-- Personal Information -->
                     <div class="space-y-4">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Personal Information</h4>
                         <div>
@@ -187,10 +221,8 @@
                         </div>
                     </div>
 
-                    <!-- Race Categories -->
                     <div class="mt-6">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Select Your Category</h4>
-
                         <div class="mb-4">
                             <select id="raceCategory" class="w-full p-3 border rounded bg-gray-50" required>
                                 <option value="">Select Your Race Category</option>
@@ -205,7 +237,6 @@
                         </div>
                     </div>
 
-                    <!-- Individual Payment Summary -->
                     <div class="bg-gray-100 p-4 rounded-lg border border-gray-300 mt-6">
                         <h4 class="font-semibold text-lg mb-3">Payment Summary</h4>
                         <div class="space-y-2">
@@ -222,7 +253,6 @@
                     </div>
                 </div>
 
-                <!-- Group Registration Form -->
                 <div id="groupForm" class="registration-section hidden">
                     <div class="mb-6">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Information</h4>
@@ -245,7 +275,6 @@
                         </div>
                     </div>
 
-                    <!-- Group Payment Summary -->
                     <div class="bg-gray-100 p-4 rounded-lg border border-gray-300 mt-6">
                         <h4 class="font-semibold text-lg mb-3">Payment Summary</h4>
                         <div class="space-y-2">
@@ -266,7 +295,6 @@
                     </div>
                 </div>
 
-                <!-- Emergency Contact (Common to both forms) -->
                 <div class="space-y-4">
                     <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Emergency Contact</h4>
                     <div>
@@ -279,7 +307,6 @@
                     </div>
                 </div>
 
-                <!-- M-Pesa Payment Section (Common to both forms) -->
                 <div class="mpesa-box p-4 rounded-lg mt-6">
                     <div class="flex items-center mb-3">
                         <i class="fab fa-cc-m-pesa text-4xl text-green-600 mr-3"></i>
@@ -308,7 +335,6 @@
                     </div>
                 </div>
 
-                <!-- Terms and Payment Confirmation (Common to both forms) -->
                 <div class="mt-6">
                     <div class="flex items-start">
                         <input type="checkbox" id="terms" class="mt-1 mr-2" required>
@@ -327,7 +353,6 @@
                     <div id="paymentConfirmError" class="error-message hidden">You must confirm the payment amount</div>
                 </div>
 
-                <!-- Submit Button (Common to both forms) -->
                 <div class="mt-8">
                     <button type="submit" class="bg-[#E52D2F] hover:bg-[#c22525] text-white px-6 py-3 rounded w-full font-bold flex items-center justify-center">
                         <i class="fab fa-cc-m-pesa mr-2 text-xl"></i> Pay <span id="submitAmount">3,000 KES</span> via M-Pesa
@@ -337,7 +362,17 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <div id="processingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent">
+                <div class="spinner"></div>
+                <h3 class="text-center text-xl font-semibold mb-2">Processing Payment</h3>
+                <p class="text-center" id="modalMessage">Please wait while we process your payment...</p>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-[#E52D2F] text-white py-8 mt-12">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -359,7 +394,9 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let currentRegistrationId = null;
+
         document.addEventListener("DOMContentLoaded", function() {
             const menuToggle = document.getElementById("menuToggle");
             const mobileMenu = document.getElementById("mobileMenu");
@@ -379,7 +416,6 @@
                 mobileMenu.classList.add("hidden");
             };
 
-            // Calculate total amount based on participants
             const participantInput = document.getElementById('participantCount');
             if (participantInput) {
                 participantInput.addEventListener('input', function() {
@@ -388,61 +424,227 @@
                 });
             }
 
-            function updateAmountDisplay(count) {
-                const feePerPerson = 3000;
-                const totalAmount = count * feePerPerson;
-
-                // Update all relevant displays
-                document.getElementById('displayParticipantCount').textContent = count;
-                document.getElementById('totalAmount').textContent = totalAmount.toLocaleString() + ' KES';
-                document.getElementById('mpesaAmount').textContent = totalAmount.toLocaleString() + ' KES';
-                document.getElementById('confirmAmount').textContent = totalAmount.toLocaleString() + ' KES';
-                document.getElementById('submitAmount').textContent = totalAmount.toLocaleString() + ' KES';
-            }
-
-            // Form submission for M-Pesa
-            document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            document.getElementById('registrationForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 let isValid = true;
 
-                // Validate individual form if visible
                 if (!document.getElementById('individualForm').classList.contains('hidden')) {
                     isValid = validateIndividualForm() && isValid;
                 }
 
-                // Validate group form if visible
                 if (!document.getElementById('groupForm').classList.contains('hidden')) {
                     isValid = validateGroupForm() && isValid;
                 }
 
-                // Validate common fields
                 isValid = validateCommonFields() && isValid;
 
                 if (isValid) {
-                    const phoneInput = document.getElementById('phone');
-                    const participantCount = document.getElementById('participantCount') ?
-                        parseInt(document.getElementById('participantCount').value) || 1 : 1;
-                    const totalAmount = participantCount * 3000;
+                    const isGroup = !document.getElementById('groupForm').classList.contains('hidden');
+                    const formData = collectFormData(isGroup);
 
-                    // Simulate payment processing
-                    alert(`M-Pesa payment request for ${totalAmount.toLocaleString()} KES sent to ${phoneInput.value}. Complete payment to finish registration.`);
+                    showModal('Processing Registration', 'Please wait while we process your registration...');
 
-                    // In a real implementation, you would call your payment API here
-                    // processMpesaPayment(phoneInput.value, totalAmount);
+                    try {
+                        const registrationResponse = isGroup
+                            ? await submitGroupRegistration(formData)
+                            : await submitIndividualRegistration(formData);
+
+                        currentRegistrationId = registrationResponse._id;
+
+                        const paymentResponse = await processMpesaPayment(
+                            formData.phone,
+                            registrationResponse.totalAmount,
+                            registrationResponse._id,
+                            isGroup
+                        );
+
+                        updateModal(
+                            'Payment Request Sent',
+                            `We've sent an M-Pesa payment request to ${formData.phone} for ${registrationResponse.totalAmount.toLocaleString()} KES.
+                            Please check your phone to complete the payment.`
+                        );
+
+                        pollPaymentStatus(registrationResponse._id, isGroup);
+                    } catch (error) {
+                        updateModal(
+                            'Registration Error',
+                            error.message || 'An error occurred during registration. Please try again.'
+                        );
+                    }
                 }
             });
 
-            // Handle URL hash
             if (window.location.hash === '#groupForm') {
                 showGroupForm();
             }
         });
 
+        function collectFormData(isGroup) {
+            if (isGroup) {
+                return {
+                    groupType: document.getElementById('groupType').value,
+                    organizationName: document.getElementById('organizationName').value,
+                    contactPerson: {
+                        name: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value
+                    },
+                    participants: Array(parseInt(document.getElementById('participantCount').value)).fill({
+                        fullName: 'Group Participant',
+                        dateOfBirth: new Date().toISOString(),
+                        raceCategory: document.getElementById('raceCategory').value
+                    }),
+                    emergencyContact: {
+                        name: document.getElementById('emergencyName').value,
+                        phone: document.getElementById('emergencyPhone').value
+                    }
+                };
+            } else {
+                return {
+                    fullName: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    dateOfBirth: document.getElementById('dob').value,
+                    raceCategory: document.getElementById('raceCategory').value,
+                    emergencyContact: {
+                        name: document.getElementById('emergencyName').value,
+                        phone: document.getElementById('emergencyPhone').value
+                    }
+                };
+            }
+        }
+
+        async function submitIndividualRegistration(formData) {
+            const response = await fetch(`${API_BASE_URL}/registrations/individual`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Registration failed');
+            }
+
+            return { ...data, totalAmount: 3000 };
+        }
+
+        async function submitGroupRegistration(formData) {
+            const response = await fetch(`${API_BASE_URL}/registrations/group`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Registration failed');
+            }
+
+            return { ...data, totalAmount: formData.participants.length * 3000 };
+        }
+
+        async function processMpesaPayment(phoneNumber, amount, registrationId, isGroup) {
+            const response = await fetch(`${API_BASE_URL}/payments/initiate`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phoneNumber: `254${phoneNumber.substring(phoneNumber.length - 9)}`,
+                    amount,
+                    registrationId,
+                    registrationType: isGroup ? 'group' : 'individual'
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Payment initiation failed');
+            }
+
+            return data;
+        }
+
+        async function pollPaymentStatus(registrationId, isGroup) {
+            const maxAttempts = 10;
+            let attempts = 0;
+
+            const checkStatus = async () => {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/registrations/${registrationId}?type=${isGroup ? 'group' : 'individual'}`);
+                    const data = await response.json();
+
+                    if (data.data.status === 'confirmed') {
+                        updateModal(
+                            'Payment Confirmed',
+                            'Your payment has been confirmed! Thank you for registering for No Finish Line Nairobi.'
+                        );
+                        return;
+                    }
+
+                    if (attempts < maxAttempts) {
+                        attempts++;
+                        setTimeout(checkStatus, 3000);
+                    } else {
+                        updateModal(
+                            'Payment Pending',
+                            'Your payment is still pending. You can check your M-Pesa messages and complete the payment later.'
+                        );
+                    }
+                } catch (error) {
+                    console.error('Status check error:', error);
+                    if (attempts < maxAttempts) {
+                        attempts++;
+                        setTimeout(checkStatus, 3000);
+                    }
+                }
+            };
+
+            checkStatus();
+        }
+
+        function showModal(title, message) {
+            document.getElementById('modalContent').innerHTML = `
+                <div class="spinner"></div>
+                <h3 class="text-center text-xl font-semibold mb-2">${title}</h3>
+                <p class="text-center">${message}</p>
+            `;
+            document.getElementById('processingModal').style.display = 'block';
+        }
+
+        function updateModal(title, message) {
+            document.getElementById('modalContent').innerHTML = `
+                <h3 class="text-center text-xl font-semibold mb-2">${title}</h3>
+                <p class="text-center mb-4">${message}</p>
+                <button onclick="closeModal()" class="bg-[#E52D2F] text-white px-4 py-2 rounded mx-auto block">
+                    Close
+                </button>
+            `;
+        }
+
+        function closeModal() {
+            document.getElementById('processingModal').style.display = 'none';
+            if (currentRegistrationId) {
+                window.location.href = `confirmation.html?id=${currentRegistrationId}`;
+            }
+        }
+
         function validateIndividualForm() {
             let isValid = true;
-
-            // Validate full name
             const fullName = document.getElementById('fullName');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const dob = document.getElementById('dob');
+            const raceCategory = document.getElementById('raceCategory');
+
             if (!fullName.value.trim()) {
                 document.getElementById('fullNameError').classList.remove('hidden');
                 fullName.classList.add('input-error');
@@ -452,8 +654,6 @@
                 fullName.classList.remove('input-error');
             }
 
-            // Validate email
-            const email = document.getElementById('email');
             if (!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)) {
                 document.getElementById('emailError').classList.remove('hidden');
                 email.classList.add('input-error');
@@ -463,8 +663,6 @@
                 email.classList.remove('input-error');
             }
 
-            // Validate phone
-            const phone = document.getElementById('phone');
             if (!phone.value.trim() || phone.value.length < 9) {
                 document.getElementById('phoneError').classList.remove('hidden');
                 phone.classList.add('input-error');
@@ -474,8 +672,6 @@
                 phone.classList.remove('input-error');
             }
 
-            // Validate date of birth
-            const dob = document.getElementById('dob');
             if (!dob.value) {
                 document.getElementById('dobError').classList.remove('hidden');
                 dob.classList.add('input-error');
@@ -485,8 +681,6 @@
                 dob.classList.remove('input-error');
             }
 
-            // Validate race category
-            const raceCategory = document.getElementById('raceCategory');
             if (!raceCategory.value) {
                 document.getElementById('categoryError').classList.remove('hidden');
                 raceCategory.classList.add('input-error');
@@ -501,9 +695,10 @@
 
         function validateGroupForm() {
             let isValid = true;
-
-            // Validate group type
             const groupType = document.getElementById('groupType');
+            const organizationName = document.getElementById('organizationName');
+            const participantCount = document.getElementById('participantCount');
+
             if (!groupType.value) {
                 document.getElementById('groupTypeError').classList.remove('hidden');
                 groupType.classList.add('input-error');
@@ -513,8 +708,6 @@
                 groupType.classList.remove('input-error');
             }
 
-            // Validate organization name
-            const organizationName = document.getElementById('organizationName');
             if (!organizationName.value.trim()) {
                 document.getElementById('organizationError').classList.remove('hidden');
                 organizationName.classList.add('input-error');
@@ -524,8 +717,6 @@
                 organizationName.classList.remove('input-error');
             }
 
-            // Validate participant count
-            const participantCount = document.getElementById('participantCount');
             if (!participantCount.value || parseInt(participantCount.value) < 1) {
                 document.getElementById('participantError').classList.remove('hidden');
                 participantCount.classList.add('input-error');
@@ -540,9 +731,11 @@
 
         function validateCommonFields() {
             let isValid = true;
-
-            // Validate emergency contact name
             const emergencyName = document.getElementById('emergencyName');
+            const emergencyPhone = document.getElementById('emergencyPhone');
+            const terms = document.getElementById('terms');
+            const paymentConfirm = document.getElementById('payment-confirm');
+
             if (!emergencyName.value.trim()) {
                 document.getElementById('emergencyNameError').classList.remove('hidden');
                 emergencyName.classList.add('input-error');
@@ -552,8 +745,6 @@
                 emergencyName.classList.remove('input-error');
             }
 
-            // Validate emergency contact phone
-            const emergencyPhone = document.getElementById('emergencyPhone');
             if (!emergencyPhone.value.trim() || emergencyPhone.value.length < 9) {
                 document.getElementById('emergencyPhoneError').classList.remove('hidden');
                 emergencyPhone.classList.add('input-error');
@@ -563,8 +754,6 @@
                 emergencyPhone.classList.remove('input-error');
             }
 
-            // Validate terms checkbox
-            const terms = document.getElementById('terms');
             if (!terms.checked) {
                 document.getElementById('termsError').classList.remove('hidden');
                 isValid = false;
@@ -572,8 +761,6 @@
                 document.getElementById('termsError').classList.add('hidden');
             }
 
-            // Validate payment confirmation checkbox
-            const paymentConfirm = document.getElementById('payment-confirm');
             if (!paymentConfirm.checked) {
                 document.getElementById('paymentConfirmError').classList.remove('hidden');
                 isValid = false;
@@ -592,7 +779,6 @@
             document.getElementById('individualForm').classList.remove('hidden');
             document.getElementById('groupForm').classList.add('hidden');
 
-            // Reset amount displays for individual registration
             document.getElementById('mpesaAmount').textContent = '3,000 KES';
             document.getElementById('confirmAmount').textContent = '3,000 KES';
             document.getElementById('submitAmount').textContent = '3,000 KES';
@@ -606,7 +792,6 @@
             document.getElementById('groupForm').classList.remove('hidden');
             document.getElementById('individualForm').classList.add('hidden');
 
-            // Calculate initial amount for group registration
             const initialCount = parseInt(document.getElementById('participantCount').value) || 1;
             updateAmountDisplay(initialCount);
         }
@@ -615,7 +800,6 @@
             const feePerPerson = 3000;
             const totalAmount = count * feePerPerson;
 
-            // Update all relevant displays
             document.getElementById('displayParticipantCount').textContent = count;
             document.getElementById('totalAmount').textContent = totalAmount.toLocaleString() + ' KES';
             document.getElementById('mpesaAmount').textContent = totalAmount.toLocaleString() + ' KES';
