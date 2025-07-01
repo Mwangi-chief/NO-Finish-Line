@@ -1,6 +1,6 @@
 class RegistrationApp {
   constructor() {
-    this.apiBaseUrl = 'http://localhost:3000/api';
+    this.apiBaseUrl = 'http://localhost:5000/api';
     this.initEventListeners();
   }
 

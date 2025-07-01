@@ -91,10 +91,10 @@ async function loadDashboard() {
     try {
         // Load counts
         const [blogRes, storiesRes, clinicsRes, challengesRes] = await Promise.all([
-            fetch('/api/blog').then(res => res.json()),
-            fetch('/api/stories').then(res => res.json()),
-            fetch('/api/clinics').then(res => res.json()),
-            fetch('/api/challenge').then(res => res.json())
+            fetch('http://localhost:5000/api/blog').then(res => res.json()),
+            fetch('http://localhost:5000/api/stories').then(res => res.json()),
+            fetch('http://localhost:5000/api/clinics').then(res => res.json()),
+            fetch('http://localhost:5000/api/challenge').then(res => res.json())
         ]);
 
         if (blogRes.success) {
@@ -155,7 +155,7 @@ async function loadDashboard() {
 // Blog Post functions
 async function loadBlogPosts() {
     try {
-        const response = await fetch('/api/blog');
+        const response = await fetch('http://localhost:5000/api/blog');
         const data = await response.json();
 
         if (data.success) {
@@ -200,7 +200,7 @@ function showBlogPostForm(postId = null) {
         document.getElementById('blogPostId').value = postId;
 
         // Load post data
-        fetch(`/api/blog/${postId}`)
+        fetch(`http://localhost:5000/api/blog/${postId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -232,24 +232,39 @@ function hideBlogPostForm() {
 async function handleBlogPostSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('title', document.getElementById('blogPostTitle').value);
-    formData.append('content', document.getElementById('blogPostContent').value);
-    formData.append('excerpt', document.getElementById('blogPostExcerpt').value);
-
-    const imageInput = document.getElementById('blogPostImage');
-    if (imageInput.files[0]) {
-        formData.append('featuredImage', imageInput.files[0]);
-    }
-
-    const postId = document.getElementById('blogPostId').value;
-    const method = postId ? 'PUT' : 'POST';
-    const url = postId ? `/api/blog/${postId}` : '/api/blog';
-
     try {
+        // Get form values
+        const title = document.getElementById('blogPostTitle').value;
+        const content = document.getElementById('blogPostContent').value;
+        const excerpt = document.getElementById('blogPostExcerpt').value;
+        const postId = document.getElementById('blogPostId').value;
+        const imageInput = document.getElementById('blogPostImage');
+
+        // Upload image to Cloudinary if present
+        let imageUrl = null;
+        if (imageInput.files[0]) {
+            imageUrl = await uploadImageToCloudinary(imageInput.files[0]);
+        }
+
+        // Prepare the blog post data
+        const blogData = {
+            title,
+            content,
+            excerpt: excerpt || content.substring(0, 150) + '...',
+            featuredImage: imageUrl
+        };
+
+        // Determine the request method and URL
+        const method = postId ? 'PUT' : 'POST';
+        const url = postId ? `http://localhost:5000/api/blog/${postId}` : 'http://localhost:5000/api/blog';
+
+        // Send the request with JSON data
         const response = await fetch(url, {
             method,
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(blogData)
         });
 
         const data = await response.json();
@@ -263,7 +278,38 @@ async function handleBlogPostSubmit(e) {
         }
     } catch (error) {
         console.error('Error submitting blog post:', error);
-        alert('Failed to save blog post');
+        alert('Failed to save blog post: ' + error.message);
+    }
+}
+
+// ======= CLOUDINARY CONFIGURATION =======
+// Replace these with your actual Cloudinary credentials
+const CLOUDINARY_CLOUD_NAME = "dce7m1f01"; // From Cloudinary dashboard
+const CLOUDINARY_UPLOAD_PRESET = "blog_uploads"; // From Cloudinary upload presets
+
+async function uploadImageToCloudinary(file) {
+    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`;
+    const formData = new FormData();
+
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    try {
+        const response = await fetch(cloudinaryUrl, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.secure_url) {
+            return data.secure_url; // Return the Cloudinary URL
+        } else {
+            throw new Error(data.error?.message || 'Failed to upload image to Cloudinary');
+        }
+    } catch (error) {
+        console.error('Error uploading image:', error);
+        throw new Error('Image upload failed: ' + error.message);
     }
 }
 
@@ -274,7 +320,7 @@ async function editBlogPost(postId) {
 async function deleteBlogPost(postId) {
     if (confirm('Are you sure you want to delete this blog post?')) {
         try {
-            const response = await fetch(`/api/blog/${postId}`, {
+            const response = await fetch(`http://localhost:5000/api/blog/${postId}`, {
                 method: 'DELETE'
             });
 
@@ -296,7 +342,7 @@ async function deleteBlogPost(postId) {
 // Impact Story functions (similar to blog posts)
 async function loadImpactStories() {
     try {
-        const response = await fetch('/api/stories');
+        const response = await fetch('http://localhost:5000/api/stories');
         const data = await response.json();
 
         if (data.success) {
@@ -341,7 +387,7 @@ function showImpactStoryForm(storyId = null) {
         document.getElementById('impactStoryId').value = storyId;
 
         // Load story data
-        fetch(`/api/stories/${storyId}`)
+        fetch(`http://localhost:5000/api/stories/${storyId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -366,31 +412,42 @@ function showImpactStoryForm(storyId = null) {
     modal.classList.remove('hidden');
 }
 
-function hideImpactStoryForm() {
-    document.getElementById('impactStoryModal').classList.add('hidden');
-}
-
 async function handleImpactStorySubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('title', document.getElementById('impactStoryTitle').value);
-    formData.append('content', document.getElementById('impactStoryContent').value);
-    formData.append('excerpt', document.getElementById('impactStoryExcerpt').value);
-
-    const imageInput = document.getElementById('impactStoryImage');
-    if (imageInput.files[0]) {
-        formData.append('image', imageInput.files[0]);
-    }
-
-    const storyId = document.getElementById('impactStoryId').value;
-    const method = storyId ? 'PUT' : 'POST';
-    const url = storyId ? `/api/stories/${storyId}` : '/api/stories';
-
     try {
+        // Get form values
+        const title = document.getElementById('impactStoryTitle').value;
+        const content = document.getElementById('impactStoryContent').value;
+        const excerpt = document.getElementById('impactStoryExcerpt').value;
+        const storyId = document.getElementById('impactStoryId').value;
+        const imageInput = document.getElementById('impactStoryImage');
+
+        // Upload image to Cloudinary if present
+        let imageUrl = null;
+        if (imageInput.files[0]) {
+            imageUrl = await uploadImageToCloudinary(imageInput.files[0]);
+        }
+
+        // Prepare the impact story data
+        const storyData = {
+            title,
+            content,
+            excerpt: excerpt || content.substring(0, 150) + '...',
+            image: imageUrl  // This will be the Cloudinary URL
+        };
+
+        // Determine the request method and URL
+        const method = storyId ? 'PUT' : 'POST';
+        const url = storyId ? `http://localhost:5000/api/stories/${storyId}` : 'http://localhost:5000/api/stories';
+
+        // Send the request with JSON data
         const response = await fetch(url, {
             method,
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(storyData)
         });
 
         const data = await response.json();
@@ -404,8 +461,12 @@ async function handleImpactStorySubmit(e) {
         }
     } catch (error) {
         console.error('Error submitting impact story:', error);
-        alert('Failed to save impact story');
+        alert('Failed to save impact story: ' + error.message);
     }
+}
+
+function hideImpactStoryForm() {
+    document.getElementById('impactStoryModal').classList.add('hidden');
 }
 
 async function editImpactStory(storyId) {
@@ -415,7 +476,7 @@ async function editImpactStory(storyId) {
 async function deleteImpactStory(storyId) {
     if (confirm('Are you sure you want to delete this impact story?')) {
         try {
-            const response = await fetch(`/api/stories/${storyId}`, {
+            const response = await fetch(`http://localhost:5000/api/stories/${storyId}`, {
                 method: 'DELETE'
             });
 
@@ -437,7 +498,7 @@ async function deleteImpactStory(storyId) {
 // Clinic functions
 async function loadClinics() {
     try {
-        const response = await fetch('/api/clinics');
+        const response = await fetch('http://localhost:5000/api/clinics');
         const data = await response.json();
 
         if (data.success) {
@@ -485,7 +546,7 @@ function showClinicForm(clinicId = null) {
         document.getElementById('clinicId').value = clinicId;
 
         // Load clinic data
-        fetch(`/api/clinics/${clinicId}`)
+        fetch(`http://localhost:5000/api/clinics/${clinicId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -531,7 +592,7 @@ async function handleClinicSubmit(e) {
 
     const clinicId = document.getElementById('clinicId').value;
     const method = clinicId ? 'PUT' : 'POST';
-    const url = clinicId ? `/api/clinics/${clinicId}` : '/api/clinics';
+    const url = clinicId ? `http://localhost:5000/api/clinics/${clinicId}` : 'http://localhost:5000/api/clinics';
 
     try {
         const response = await fetch(url, {
@@ -561,7 +622,7 @@ async function editClinic(clinicId) {
 async function deleteClinic(clinicId) {
     if (confirm('Are you sure you want to delete this clinic?')) {
         try {
-            const response = await fetch(`/api/clinics/${clinicId}`, {
+            const response = await fetch(`http://localhost:5000/api/clinics/${clinicId}`, {
                 method: 'DELETE'
             });
 
@@ -583,7 +644,7 @@ async function deleteClinic(clinicId) {
 // Challenge functions
 async function loadChallengeEntries() {
     try {
-        const response = await fetch('/api/challenge');
+        const response = await fetch('http://localhost:5000/api/challenge');
         const data = await response.json();
 
         if (data.success) {
@@ -611,7 +672,7 @@ async function loadChallengeEntries() {
 
 function viewChallengeEntry(entryId) {
     // In a real app, you'd show a modal with the video
-    fetch(`/api/challenge/${entryId}`)
+    fetch(`http://localhost:5000/api/challenge/${entryId}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
@@ -623,7 +684,7 @@ function viewChallengeEntry(entryId) {
 async function deleteChallengeEntry(entryId) {
     if (confirm('Are you sure you want to delete this challenge entry?')) {
         try {
-            const response = await fetch(`/api/challenge/${entryId}`, {
+            const response = await fetch(`http://localhost:5000/api/challenge/${entryId}`, {
                 method: 'DELETE'
             });
 
