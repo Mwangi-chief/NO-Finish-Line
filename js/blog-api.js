@@ -1,6 +1,6 @@
 // Base API configuration
 const BlogAPI = {
-  baseUrl: 'http://localhost:5000/api',
+  baseUrl: 'https://nofinishnrbdjango.fly.dev/api',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : ''

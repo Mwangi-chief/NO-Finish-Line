@@ -83,8 +83,8 @@ class DonationHandler {
       donateButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
       donateButton.disabled = true;
 
-      // Replace with your actual API endpoint
-      const response = await fetch('https://your-api-endpoint.com/donations', {
+      // Use the correct backend API endpoint
+      const response = await fetch('https://nofinishnrbdjango.fly.dev/api/donations/create/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
