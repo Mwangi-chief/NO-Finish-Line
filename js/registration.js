@@ -15,7 +15,7 @@ class RegistrationApp {
       participantInput.addEventListener('input', () => this.updateGroupAmount());
     }
 
-    // Form submission
+    // Form submission //
     const form = document.querySelector('form');
     if (form) {
       form.addEventListener('submit', (e) => this.handleFormSubmit(e));
