@@ -1,6 +1,17 @@
 class RegistrationApp {
   constructor() {
-    this.apiBaseUrl = 'http://localhost:5000/api';
+    this.apiBaseUrl = 'https://nofinishnrbdjango.fly.dev/api';
+      // Initiate Pesapal payment
+      async initiatePesapalPayment(paymentData) {
+        const response = await fetch(`${this.apiBaseUrl}/pesapal/initiate/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(paymentData)
+        });
+        return await response.json();
+      }
     this.initEventListeners();
   }
 
