@@ -132,7 +132,7 @@ class RegistrationApp {
       throw new Error('Please fill in all required fields');
     }
 
-    const response = await fetch(`${this.apiBaseUrl}/registrations/individual`, {
+    const response = await fetch(`${this.apiBaseUrl}/registrations/individual/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -157,7 +157,7 @@ class RegistrationApp {
       throw new Error('Please fill in all required fields');
     }
 
-    const response = await fetch(`${this.apiBaseUrl}/registrations/group`, {
+    const response = await fetch(`${this.apiBaseUrl}/registrations/group/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
