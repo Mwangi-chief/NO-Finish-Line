@@ -551,7 +551,7 @@
         }
 
         async function processMpesaPayment(phoneNumber, amount, registrationId, isGroup) {
-            const response = await fetch(`${API_BASE_URL}/payments/initiate`, {
+            const response = await fetch(`${API_BASE_URL}/pesapal/initiate/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
