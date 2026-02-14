@@ -551,17 +551,29 @@
         }
 
         async function processMpesaPayment(phoneNumber, amount, registrationId, isGroup) {
+
+            // Collect customer info from form fields
+            const firstName = document.getElementById('fullName')?.value?.split(' ')[0] || '';
+            const lastName = document.getElementById('fullName')?.value?.split(' ').slice(1).join(' ') || '';
+            const email = document.getElementById('email')?.value || '';
+            const phone_number = `254${phoneNumber.substring(phoneNumber.length - 9)}`;
+            const paymentData = {
+                amount,
+                currency: 'KES',
+                description: 'Registration Payment',
+                customer: {
+                    first_name: firstName,
+                    last_name: lastName,
+                    email,
+                    phone_number
+                }
+            };
             const response = await fetch(`${API_BASE_URL}/pesapal/initiate/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    phoneNumber: `254${phoneNumber.substring(phoneNumber.length - 9)}`,
-                    amount,
-                    registrationId,
-                    registrationType: isGroup ? 'group' : 'individual'
-                })
+                body: JSON.stringify(paymentData)
             });
 
             const data = await response.json();
