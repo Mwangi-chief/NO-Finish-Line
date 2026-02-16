@@ -215,6 +215,33 @@ class RegistrationApp {
 document.addEventListener('DOMContentLoaded', () => {
   new RegistrationApp();
 
+  // On load, set required attributes correctly for visible form
+  const groupForm = document.getElementById('groupForm');
+  const individualForm = document.getElementById('individualForm');
+  if (groupForm && individualForm) {
+    if (!groupForm.classList.contains('hidden')) {
+      document.getElementById('groupName')?.setAttribute('required', 'required');
+      document.getElementById('groupFullName')?.setAttribute('required', 'required');
+      document.getElementById('groupEmail')?.setAttribute('required', 'required');
+      document.getElementById('groupPhone')?.setAttribute('required', 'required');
+      document.getElementById('fullName')?.removeAttribute('required');
+      document.getElementById('email')?.removeAttribute('required');
+      document.getElementById('phone')?.removeAttribute('required');
+      document.getElementById('dob')?.removeAttribute('required');
+      document.getElementById('raceCategory')?.removeAttribute('required');
+    } else {
+      document.getElementById('fullName')?.setAttribute('required', 'required');
+      document.getElementById('email')?.setAttribute('required', 'required');
+      document.getElementById('phone')?.setAttribute('required', 'required');
+      document.getElementById('dob')?.setAttribute('required', 'required');
+      document.getElementById('raceCategory')?.setAttribute('required', 'required');
+      document.getElementById('groupName')?.removeAttribute('required');
+      document.getElementById('groupFullName')?.removeAttribute('required');
+      document.getElementById('groupEmail')?.removeAttribute('required');
+      document.getElementById('groupPhone')?.removeAttribute('required');
+    }
+  }
+
   // Handle URL hash for direct linking to group form
   if (window.location.hash === '#groupForm') {
     const groupTab = document.getElementById('groupTab');
