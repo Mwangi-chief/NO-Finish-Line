@@ -289,13 +289,11 @@
                 <div class="space-y-4">
                     <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Emergency Contact</h4>
                     <div>
-                        <input type="text" id="emergencyName" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
-                                                <input type="text" id="emergencyName" name="emergencyName" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
+                        <input type="text" id="emergencyName" name="emergencyName" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
                         <div id="emergencyNameError" class="error-message hidden">Please enter emergency contact name</div>
                     </div>
                     <div>
-                        <input type="tel" id="emergencyPhone" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
-                                                <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
+                        <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
                         <div id="emergencyPhoneError" class="error-message hidden">Please enter emergency contact phone</div>
                     </div>
                 </div>
@@ -330,8 +328,7 @@
 
                 <div class="mt-6">
                     <div class="flex items-start">
-                        <input type="checkbox" id="terms" class="mt-1 mr-2" required>
-                                                <input type="checkbox" id="terms" name="terms" class="mt-1 mr-2" required>
+                        <input type="checkbox" id="terms" name="terms" class="mt-1 mr-2" required>
                         <label for="terms" class="text-sm">
                             I confirm that the phone number provided is correct for M-Pesa payment and I agree to the
                             <a href="#" class="text-[#E52D2F] underline">terms and conditions</a>.
@@ -339,8 +336,7 @@
                     </div>
                     <div id="termsError" class="error-message hidden">You must agree to the terms and conditions</div>
                     <div class="flex items-start mt-3">
-                        <input type="checkbox" id="payment-confirm" class="mt-1 mr-2" required>
-                                                <input type="checkbox" id="payment-confirm" name="payment-confirm" class="mt-1 mr-2" required>
+                        <input type="checkbox" id="payment-confirm" name="payment-confirm" class="mt-1 mr-2" required>
                         <label for="payment-confirm" class="text-sm">
                             I understand that <span id="confirmAmount">3,000 KES</span> will be deducted from my M-Pesa account upon submission.
                         </label>
