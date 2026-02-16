@@ -354,21 +354,41 @@
     </section>
 
     <div id="processingModal" class="modal">
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Personal Information</h4>
-                        <div>
-                            <input type="text" id="fullName" name="fullName" placeholder="Full Name" class="w-full p-3 border rounded" required>
-                            <div id="fullNameError" class="error-message hidden">Please enter your full name</div>
-                        </div>
-                        <div>
-                            <input type="email" id="email" name="email" placeholder="Email" class="w-full p-3 border rounded" required>
-                            <div id="emailError" class="error-message hidden">Please enter a valid email address</div>
-                        </div>
-                        <div>
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
-                            <div id="phoneError" class="error-message hidden">Please enter a valid phone number</div>
-                        </div>
-                    </div>
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent">
+                <div class="spinner"></div>
+                <h3 class="text-center text-xl font-semibold mb-2">Processing Payment</h3>
+                <p class="text-center" id="modalMessage">Please wait while we process your payment...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[#E52D2F] text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl font-bold">No Finish Line Nairobi</h2>
+                    <p class="mt-2 text-sm text-gray-300">Keep Moving, Never Quit or Give Up</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-yellow-300"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-300"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white hover:text-yellow-300"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-600">
+            <div class="text-center text-sm text-gray-300">
+                <p>&copy;No Finish Line Nairobi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE_URL = 'https://nofinishnrbdjango.fly.dev/api';
+        let currentRegistrationId = null;
+
+        document.addEventListener("DOMContentLoaded", function() {
             const menuToggle = document.getElementById("menuToggle");
             const mobileMenu = document.getElementById("mobileMenu");
 
