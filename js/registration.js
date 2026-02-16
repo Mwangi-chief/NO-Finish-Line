@@ -160,7 +160,7 @@ class RegistrationApp {
     });
 
     return await response.json();
-  }
+  }xvzv fgv 
 
   async submitGroupRegistration() {
     const formData = {
