@@ -51,8 +51,15 @@ class DonationHandler {
   }
 
   async processDonation() {
-    const amount = document.querySelector('.donation-option.active')?.textContent ||
-                  document.querySelector('input[type="number"]').value;
+
+    let amount = '';
+    const activeOption = document.querySelector('.donation-option.active');
+    const customAmountInput = document.querySelector('input[type="number"]');
+    if (activeOption && activeOption.textContent) {
+      amount = activeOption.textContent.replace(/,/g, '').trim();
+    } else if (customAmountInput && customAmountInput.value) {
+      amount = customAmountInput.value.trim();
+    }
 
     if (!amount || isNaN(amount)) {
       this.showAlert('Please select or enter a valid donation amount');
@@ -76,12 +83,16 @@ class DonationHandler {
       isRecurring
     };
 
+
+    let donateButton = document.querySelector('button.bg-\[#E52D2F\]');
+    let originalText = '';
     try {
       // Show loading state
-      const donateButton = document.querySelector('button.bg-\\[#E52D2F\\]');
-      const originalText = donateButton.textContent;
-      donateButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-      donateButton.disabled = true;
+      if (donateButton && donateButton.textContent) {
+        originalText = donateButton.textContent;
+        donateButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        donateButton.disabled = true;
+      }
 
       // Use the correct backend API endpoint
       const response = await fetch('https://nofinishnrbdjango.fly.dev/api/donations/create/', {
@@ -105,8 +116,8 @@ class DonationHandler {
       this.showAlert(`Donation failed: ${error.message}`);
     } finally {
       // Reset button state
-      const donateButton = document.querySelector('button.bg-\\[#E52D2F\\]');
-      if (donateButton) {
+      donateButton = document.querySelector('button.bg-\[#E52D2F\]');
+      if (donateButton && originalText) {
         donateButton.textContent = originalText;
         donateButton.disabled = false;
       }
