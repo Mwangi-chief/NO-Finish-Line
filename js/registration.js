@@ -50,6 +50,17 @@ class RegistrationApp {
     document.getElementById('individualForm').classList.remove('hidden');
     document.getElementById('groupForm').classList.add('hidden');
 
+    // Set required for individual fields, remove for group fields
+    document.getElementById('fullName')?.setAttribute('required', 'required');
+    document.getElementById('email')?.setAttribute('required', 'required');
+    document.getElementById('phone')?.setAttribute('required', 'required');
+    document.getElementById('dob')?.setAttribute('required', 'required');
+    document.getElementById('raceCategory')?.setAttribute('required', 'required');
+    document.getElementById('groupName')?.removeAttribute('required');
+    document.getElementById('groupFullName')?.removeAttribute('required');
+    document.getElementById('groupEmail')?.removeAttribute('required');
+    document.getElementById('groupPhone')?.removeAttribute('required');
+
     // Reset amount displays
     this.updateAmountDisplay(3000);
   }
@@ -61,6 +72,17 @@ class RegistrationApp {
     document.getElementById('individualTab').classList.add('inactive');
     document.getElementById('groupForm').classList.remove('hidden');
     document.getElementById('individualForm').classList.add('hidden');
+
+    // Set required for group fields, remove for individual fields
+    document.getElementById('groupName')?.setAttribute('required', 'required');
+    document.getElementById('groupFullName')?.setAttribute('required', 'required');
+    document.getElementById('groupEmail')?.setAttribute('required', 'required');
+    document.getElementById('groupPhone')?.setAttribute('required', 'required');
+    document.getElementById('fullName')?.removeAttribute('required');
+    document.getElementById('email')?.removeAttribute('required');
+    document.getElementById('phone')?.removeAttribute('required');
+    document.getElementById('dob')?.removeAttribute('required');
+    document.getElementById('raceCategory')?.removeAttribute('required');
 
     // Calculate initial amount
     const initialCount = parseInt(document.getElementById('participantCount').value) || 1;
