@@ -83,9 +83,9 @@ class DonationHandler {
       isRecurring
     };
 
-
-    let donateButton = document.querySelector('button.bg-\[#E52D2F\]');
-    let originalText = '';
+  // Use a robust selector for the main donation button
+  let donateButton = document.querySelector('#donation-form button[type="submit"], #donation-form button');
+  let originalText = '';
     try {
       // Show loading state
       if (donateButton && donateButton.textContent) {
@@ -116,7 +116,7 @@ class DonationHandler {
       this.showAlert(`Donation failed: ${error.message}`);
     } finally {
       // Reset button state
-      donateButton = document.querySelector('button.bg-\[#E52D2F\]');
+      donateButton = document.querySelector('#donation-form button[type="submit"], #donation-form button');
       if (donateButton && originalText) {
         donateButton.textContent = originalText;
         donateButton.disabled = false;
