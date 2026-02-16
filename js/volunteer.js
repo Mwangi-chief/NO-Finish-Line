@@ -13,7 +13,7 @@ document.getElementById('volunteerForm').addEventListener('submit', async functi
     };
 
     try {
-        const response = await fetch('https://nofinishnrbdjango.fly.dev/api/volunteers/', {
+        const response = await fetch('https://nofinishnrbdjango.fly.dev/volunteers/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
