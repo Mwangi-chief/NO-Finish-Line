@@ -12,7 +12,7 @@ class RegistrationApp {
         email,
         phone_number: phone
       };
-      const response = await fetch(`${this.apiBaseUrl}/payments/initiate`, {
+      const response = await fetch(`${this.apiBaseUrl}/payments/initiate/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
