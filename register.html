@@ -205,18 +205,22 @@
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Personal Information</h4>
                         <div>
                             <input type="text" id="fullName" placeholder="Full Name" class="w-full p-3 border rounded" required>
+                                                        <input type="text" id="fullName" name="fullName" placeholder="Full Name" class="w-full p-3 border rounded" required>
                             <div id="fullNameError" class="error-message hidden">Please enter your full name</div>
                         </div>
                         <div>
                             <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded" required>
+                                                        <input type="email" id="email" name="email" placeholder="Email" class="w-full p-3 border rounded" required>
                             <div id="emailError" class="error-message hidden">Please enter a valid email address</div>
                         </div>
                         <div>
                             <input type="tel" id="phone" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
+                                                        <input type="tel" id="phone" name="phone" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
                             <div id="phoneError" class="error-message hidden">Please enter a valid phone number</div>
                         </div>
                         <div>
                             <input type="date" id="dob" placeholder="Date of Birth" class="w-full p-3 border rounded" required>
+                                                        <input type="date" id="dob" name="dob" placeholder="Date of Birth" class="w-full p-3 border rounded" required>
                             <div id="dobError" class="error-message hidden">Please enter your date of birth</div>
                         </div>
                     </div>
@@ -225,6 +229,7 @@
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Select Your Category</h4>
                         <div class="mb-4">
                             <select id="raceCategory" class="w-full p-3 border rounded bg-gray-50" required>
+                                                            <select id="raceCategory" name="raceCategory" class="w-full p-3 border rounded bg-gray-50" required>
                                 <option value="">Select Your Race Category</option>
                                 <option value="u13">Children U13: 3km</option>
                                 <option value="u15">Children U15: 5km</option>
@@ -257,36 +262,22 @@
                     <div class="mb-6">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Information</h4>
                         <div class="mb-4">
-                            <select id="groupType" class="w-full p-3 border rounded">
-                                <option value="">Select Group Type</option>
-                                <option value="school">School/University</option>
-                                <option value="government">Government</option>
-                                <option value="corporate">Corporate</option>
-                            </select>
-                            <div id="groupTypeError" class="error-message hidden">Please select a group type</div>
+                            <input type="text" id="groupName" name="groupName" placeholder="Group Name" class="w-full p-3 border rounded" required>
                         </div>
                         <div class="mb-4">
-                            <input type="text" id="organizationName" placeholder="Organization Name" class="w-full p-3 border rounded">
-                            <div id="organizationError" class="error-message hidden">Please enter your organization name</div>
+                            <input type="text" id="groupFullName" name="groupFullName" placeholder="Contact Full Name" class="w-full p-3 border rounded" required>
                         </div>
-                        <div>
-                            <input type="number" id="participantCount" placeholder="Number of Participants" class="w-full p-3 border rounded" min="1" value="1">
-                            <div id="participantError" class="error-message hidden">Please enter a valid number of participants</div>
+                        <div class="mb-4">
+                            <input type="email" id="groupEmail" name="groupEmail" placeholder="Contact Email" class="w-full p-3 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="tel" id="groupPhone" name="groupPhone" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded" required>
                         </div>
                     </div>
 
                     <div class="bg-gray-100 p-4 rounded-lg border border-gray-300 mt-6">
                         <h4 class="font-semibold text-lg mb-3">Payment Summary</h4>
                         <div class="space-y-2">
-                            <div class="flex justify-between">
-                                <span>Fee per Participant:</span>
-                                <span>3,000 KES</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Number of Participants:</span>
-                                <span id="displayParticipantCount">1</span>
-                            </div>
-                            <div class="border-t border-gray-300 my-2"></div>
                             <div class="flex justify-between font-bold text-lg">
                                 <span>Total Amount:</span>
                                 <span id="totalAmount" class="text-[#E52D2F]">3,000 KES</span>
@@ -299,10 +290,12 @@
                     <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2">Emergency Contact</h4>
                     <div>
                         <input type="text" id="emergencyName" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
+                                                <input type="text" id="emergencyName" name="emergencyName" placeholder="Emergency Contact Name" class="w-full p-3 border rounded">
                         <div id="emergencyNameError" class="error-message hidden">Please enter emergency contact name</div>
                     </div>
                     <div>
                         <input type="tel" id="emergencyPhone" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
+                                                <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="Emergency Contact Phone" class="w-full p-3 border rounded">
                         <div id="emergencyPhoneError" class="error-message hidden">Please enter emergency contact phone</div>
                     </div>
                 </div>
@@ -338,6 +331,7 @@
                 <div class="mt-6">
                     <div class="flex items-start">
                         <input type="checkbox" id="terms" class="mt-1 mr-2" required>
+                                                <input type="checkbox" id="terms" name="terms" class="mt-1 mr-2" required>
                         <label for="terms" class="text-sm">
                             I confirm that the phone number provided is correct for M-Pesa payment and I agree to the
                             <a href="#" class="text-[#E52D2F] underline">terms and conditions</a>.
@@ -346,6 +340,7 @@
                     <div id="termsError" class="error-message hidden">You must agree to the terms and conditions</div>
                     <div class="flex items-start mt-3">
                         <input type="checkbox" id="payment-confirm" class="mt-1 mr-2" required>
+                                                <input type="checkbox" id="payment-confirm" name="payment-confirm" class="mt-1 mr-2" required>
                         <label for="payment-confirm" class="text-sm">
                             I understand that <span id="confirmAmount">3,000 KES</span> will be deducted from my M-Pesa account upon submission.
                         </label>

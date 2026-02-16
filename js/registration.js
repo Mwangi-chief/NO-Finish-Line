@@ -166,15 +166,14 @@ class RegistrationApp {
 
   async submitGroupRegistration() {
     const formData = {
-      groupType: document.querySelector('#groupForm select')?.value,
-      organizationName: document.querySelector('#groupForm input[placeholder="Organization Name"]')?.value,
-      totalParticipants: parseInt(document.getElementById('participantCount')?.value) || 1,
-      contactPerson: document.querySelector('input[placeholder="Emergency Contact Name"]')?.value,
-      contactPhone: document.querySelector('input[placeholder="Emergency Contact Phone"]')?.value
+      groupName: document.getElementById('groupName')?.value,
+      fullName: document.getElementById('groupFullName')?.value,
+      email: document.getElementById('groupEmail')?.value,
+      phone: document.getElementById('groupPhone')?.value
     };
 
     // Validate required fields
-    if (!formData.groupType || !formData.organizationName || !formData.contactPerson || !formData.contactPhone) {
+    if (!formData.groupName || !formData.fullName || !formData.email || !formData.phone) {
       throw new Error('Please fill in all required fields');
     }
 
