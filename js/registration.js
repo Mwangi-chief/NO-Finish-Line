@@ -1,17 +1,26 @@
 class RegistrationApp {
   constructor() {
     this.apiBaseUrl = 'https://nofinishnrbdjango.fly.dev/api';
-      // Initiate Pesapal payment
-      async initiatePesapalPayment(paymentData) {
-        const response = await fetch(`${this.apiBaseUrl}/pesapal/initiate/`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(paymentData)
-        });
-        return await response.json();
-      }
+    // Initiate Pesapal payment (fields at root, correct endpoint)
+    async initiatePesapalPayment({ amount, firstName, lastName, email, phone }) {
+      const paymentData = {
+        amount,
+        currency: 'KES',
+        description: 'Registration Payment',
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone_number: phone
+      };
+      const response = await fetch(`${this.apiBaseUrl}/payments/initiate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paymentData)
+      });
+      return await response.json();
+    }
     this.initEventListeners();
   }
 
@@ -99,7 +108,17 @@ class RegistrationApp {
       }
 
       if (response?.success) {
-        alert(`M-Pesa payment request sent to ${phoneInput.value}. Please complete the payment on your phone.`);
+        // Prepare payment data
+        const fullName = document.querySelector('input[placeholder="Full Name"]')?.value || '';
+        const [firstName, ...rest] = fullName.split(' ');
+        const lastName = rest.join(' ') || '';
+        const email = document.querySelector('input[placeholder="Email"]')?.value || '';
+        let phone = document.querySelector('input[placeholder="Phone Number (for M-Pesa payment)"]')?.value || '';
+        if (phone.startsWith('0')) phone = '254' + phone.slice(1);
+        const amount = isGroupForm ? (response.totalAmount || 3000) : 3000;
+        // Call Pesapal payment initiation
+        await this.initiatePesapalPayment({ amount, firstName, lastName, email, phone });
+        alert(`M-Pesa payment request sent to ${phone}. Please complete the payment on your phone.`);
         // Optionally redirect to confirmation page
         // window.location.href = '/registration-success.html';
       } else {
