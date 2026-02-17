@@ -541,10 +541,20 @@
         async function processMpesaPayment(phoneNumber, amount, registrationId, isGroup) {
 
             // Collect customer info from form fields
-            const firstName = document.getElementById('fullName')?.value?.split(' ')[0] || '';
-            const lastName = document.getElementById('fullName')?.value?.split(' ').slice(1).join(' ') || '';
-            const email = document.getElementById('email')?.value || '';
-            const phone_number = `254${phoneNumber.substring(phoneNumber.length - 9)}`;
+            let firstName, lastName, email, phone_number;
+            if (isGroup) {
+                const groupFullName = document.getElementById('groupFullName')?.value || '';
+                firstName = groupFullName.split(' ')[0] || '';
+                lastName = groupFullName.split(' ').slice(1).join(' ') || '';
+                email = document.getElementById('groupEmail')?.value || '';
+                const groupPhone = document.getElementById('groupPhone')?.value || '';
+                phone_number = `254${groupPhone.substring(groupPhone.length - 9)}`;
+            } else {
+                firstName = document.getElementById('fullName')?.value?.split(' ')[0] || '';
+                lastName = document.getElementById('fullName')?.value?.split(' ').slice(1).join(' ') || '';
+                email = document.getElementById('email')?.value || '';
+                phone_number = `254${phoneNumber.substring(phoneNumber.length - 9)}`;
+            }
             const paymentData = {
                 amount,
                 currency: 'KES',
