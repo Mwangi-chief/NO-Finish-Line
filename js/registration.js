@@ -141,6 +141,14 @@ class RegistrationApp {
         // Call Pesapal payment initiation
         await this.initiatePesapalPayment({ amount, firstName, lastName, email, phone });
         alert(`M-Pesa payment request sent to ${phone}. Please complete the payment on your phone.`);
+
+        // Poll registration/payment status using registration_id
+        const currentRegistrationId = response.registration_id;
+        if (!currentRegistrationId) {
+          console.error('registrationId is undefined!');
+          return;
+        }
+        pollPaymentStatus(currentRegistrationId, isGroupForm);
         // Optionally redirect to confirmation page
         // window.location.href = '/registration-success.html';
       } else {

@@ -452,6 +452,10 @@
                             Please check your phone to complete the payment.`
                         );
 
+                        if (!registrationResponse._id) {
+                            console.error('registrationId is undefined!');
+                            return;
+                        }
                         pollPaymentStatus(registrationResponse._id, isGroup);
                     } catch (error) {
                         updateModal(
