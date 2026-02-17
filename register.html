@@ -587,7 +587,13 @@
 
             const checkStatus = async () => {
                 try {
-                    const response = await fetch(`${API_BASE_URL}/registrations/${registrationId}?type=${isGroup ? 'group' : 'individual'}`);
+                    let url;
+                    if (isGroup) {
+                        url = `${API_BASE_URL}/users/registrations/group/${registrationId}/`;
+                    } else {
+                        url = `${API_BASE_URL}/users/registrations/individual/${registrationId}/`;
+                    }
+                    const response = await fetch(url);
                     const data = await response.json();
 
                     if (data.data.status === 'confirmed') {
