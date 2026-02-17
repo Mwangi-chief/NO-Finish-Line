@@ -549,12 +549,10 @@
                 amount,
                 currency: 'KES',
                 description: 'Registration Payment',
-                customer: {
-                    first_name: firstName,
-                    last_name: lastName,
-                    email,
-                    phone_number
-                }
+                first_name: firstName,
+                last_name: lastName,
+                email: email,
+                phone_number: phone_number
             };
             const response = await fetch(`${API_BASE_URL}/pesapal/initiate/`, {
                 method: 'POST',
