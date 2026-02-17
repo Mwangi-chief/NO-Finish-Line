@@ -257,6 +257,14 @@
                     <div class="mb-6">
                         <h4 class="text-xl font-semibold text-[#E52D2F] border-b pb-2 mb-4">Group Information</h4>
                         <div class="mb-4">
+                            <input type="text" id="groupType" name="groupType" placeholder="Group Type" class="w-full p-3 border rounded">
+                            <div id="groupTypeError" class="error-message hidden">Please enter group type</div>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" id="organizationName" name="organizationName" placeholder="Organization Name" class="w-full p-3 border rounded">
+                            <div id="organizationError" class="error-message hidden">Please enter organization name</div>
+                        </div>
+                        <div class="mb-4">
                             <input type="text" id="groupName" name="groupName" placeholder="Group Name" class="w-full p-3 border rounded">
                         </div>
                         <div class="mb-4">
@@ -267,6 +275,10 @@
                         </div>
                         <div class="mb-4">
                             <input type="tel" id="groupPhone" name="groupPhone" placeholder="Phone Number (for M-Pesa payment)" class="w-full p-3 border rounded">
+                        </div>
+                        <div class="mb-4">
+                            <input type="number" id="participantCount" name="participantCount" placeholder="Number of Participants" class="w-full p-3 border rounded">
+                            <div id="participantError" class="error-message hidden">Please enter a valid number of participants</div>
                         </div>
                     </div>
 
