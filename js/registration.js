@@ -62,7 +62,7 @@ class RegistrationApp {
     document.getElementById('groupPhone')?.removeAttribute('required');
 
     // Reset amount displays
-    this.updateAmountDisplay(3000);
+    this.updateAmountDisplay(1000);
   }
 
   showGroupForm() {
@@ -91,7 +91,7 @@ class RegistrationApp {
 
   updateGroupAmount() {
     const count = parseInt(document.getElementById('participantCount').value) || 1;
-    const totalAmount = count * 3000;
+    const totalAmount = count * 1000;
 
     // Update displays
     document.getElementById('displayParticipantCount').textContent = count;
@@ -137,7 +137,7 @@ class RegistrationApp {
         const email = document.querySelector('input[placeholder="Email"]')?.value || '';
         let phone = document.querySelector('input[placeholder="Phone Number (for M-Pesa payment)"]')?.value || '';
         if (phone.startsWith('0')) phone = '254' + phone.slice(1);
-        const amount = isGroupForm ? (response.totalAmount || 3000) : 3000;
+        const amount = isGroupForm ? (response.totalAmount || 1000) : 1000;
         // Call Pesapal payment initiation
         await this.initiatePesapalPayment({ amount, firstName, lastName, email, phone });
         alert(`M-Pesa payment request sent to ${phone}. Please complete the payment on your phone.`);

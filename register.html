@@ -521,7 +521,7 @@
                 throw new Error(data.message || 'Registration failed');
             }
 
-            return { ...data, totalAmount: 3000 };
+            return { ...data, totalAmount: 1000 };
         }
 
         async function submitGroupRegistration(formData) {
@@ -539,7 +539,7 @@
                 throw new Error(data.message || 'Registration failed');
             }
 
-            return { ...data, totalAmount: formData.participants.length * 3000 };
+            return { ...data, totalAmount: formData.participants.length * 1000 };
         }
 
         async function processMpesaPayment(phoneNumber, amount, registrationId, isGroup) {
@@ -610,7 +610,7 @@
 
                     if (attempts < maxAttempts) {
                         attempts++;
-                        setTimeout(checkStatus, 3000);
+                        setTimeout(checkStatus, 1000);
                     } else {
                         updateModal(
                             'Payment Pending',
@@ -621,7 +621,7 @@
                     console.error('Status check error:', error);
                     if (attempts < maxAttempts) {
                         attempts++;
-                        setTimeout(checkStatus, 3000);
+                        setTimeout(checkStatus, 1000);
                     }
                 }
             };
@@ -815,7 +815,7 @@
         }
 
         function updateAmountDisplay(count) {
-            const feePerPerson = 3000;
+            const feePerPerson = 1000;
             const totalAmount = count * feePerPerson;
 
             document.getElementById('displayParticipantCount').textContent = count;
