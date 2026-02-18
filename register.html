@@ -539,7 +539,14 @@
                 throw new Error(data.message || 'Registration failed');
             }
 
-            return { ...data, totalAmount: formData.participants.length * 1000 };
+            // Use members from backend response if present, otherwise fallback to formData or 1
+            let memberCount = 1;
+            if (data.members && Array.isArray(data.members)) {
+                memberCount = data.members.length;
+            } else if (formData.members && Array.isArray(formData.members)) {
+                memberCount = formData.members.length;
+            }
+            return { ...data, totalAmount: memberCount * 1000 };
         }
 
         async function processMpesaPayment(phoneNumber, amount, registrationId, isGroup) {
