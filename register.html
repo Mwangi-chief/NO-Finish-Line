@@ -483,22 +483,13 @@
         function collectFormData(isGroup) {
             if (isGroup) {
                 return {
-                    groupType: document.getElementById('groupType').value,
-                    organizationName: document.getElementById('organizationName').value,
-                    contactPerson: {
-                        name: document.getElementById('fullName').value,
-                        email: document.getElementById('email').value,
-                        phone: document.getElementById('phone').value
-                    },
-                    participants: Array(parseInt(document.getElementById('participantCount').value)).fill({
-                        fullName: 'Group Participant',
+                    group_name: document.getElementById('organizationName').value,
+                    contact_email: document.getElementById('groupEmail').value,
+                    members: Array(parseInt(document.getElementById('participantCount').value) || 1).fill({
+                        fullName: document.getElementById('groupFullName').value || 'Group Participant',
                         dateOfBirth: new Date().toISOString(),
-                        raceCategory: document.getElementById('raceCategory').value
-                    }),
-                    emergencyContact: {
-                        name: document.getElementById('emergencyName').value,
-                        phone: document.getElementById('emergencyPhone').value
-                    }
+                        raceCategory: document.getElementById('raceCategory') ? document.getElementById('raceCategory').value : ''
+                    })
                 };
             } else {
                 return {
