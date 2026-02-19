@@ -106,11 +106,20 @@ class DonationHandler {
       const result = await response.json();
 
       if (response.ok) {
-        // Show the backend message to the user (e.g., M-Pesa prompt info)
+        // Show the backend message in the donation-message div if present, else fallback to alert
+        const messageDiv = document.getElementById('donation-message');
         if (result.message) {
-          alert(result.message); // Replace with modal or custom UI as needed
+          if (messageDiv) {
+            messageDiv.textContent = result.message;
+          } else {
+            alert(result.message);
+          }
         } else {
-          alert('Thank you for your donation!');
+          if (messageDiv) {
+            messageDiv.textContent = 'Thank you for your donation!';
+          } else {
+            alert('Thank you for your donation!');
+          }
         }
       } else {
         throw new Error(result.message || 'Donation failed');
