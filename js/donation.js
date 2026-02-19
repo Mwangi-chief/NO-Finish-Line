@@ -106,8 +106,12 @@ class DonationHandler {
       const result = await response.json();
 
       if (response.ok) {
-        // Redirect to thank you page or show success message
-        window.location.href = `/thank-you.html?amount=${amount}`;
+        // Redirect to payment_url from backend response
+        if (result.payment_url) {
+          window.location.href = result.payment_url;
+        } else {
+          this.showAlert('Payment URL not received. Please try again.');
+        }
       } else {
         throw new Error(result.message || 'Donation failed');
       }
