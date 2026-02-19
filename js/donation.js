@@ -106,13 +106,11 @@ class DonationHandler {
       const result = await response.json();
 
       if (response.ok) {
-        // If payment_url is present, redirect for online payment
-        if (result.payment_url) {
-          window.location.href = result.payment_url;
+        // Show the backend message to the user (e.g., M-Pesa prompt info)
+        if (result.message) {
+          alert(result.message); // Replace with modal or custom UI as needed
         } else {
-          // Show confirmation message for non-online payment methods
-          alert('Thank you for your donation! We have received your contribution.');
-          // Optionally, update the DOM or redirect to a thank-you page here
+          alert('Thank you for your donation!');
         }
       } else {
         throw new Error(result.message || 'Donation failed');
