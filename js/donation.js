@@ -106,11 +106,13 @@ class DonationHandler {
       const result = await response.json();
 
       if (response.ok) {
-        // Redirect to payment_url from backend response
+        // If payment_url is present, redirect for online payment
         if (result.payment_url) {
           window.location.href = result.payment_url;
         } else {
-          this.showAlert('Payment URL not received. Please try again.');
+          // Show confirmation message for non-online payment methods
+          alert('Thank you for your donation! We have received your contribution.');
+          // Optionally, update the DOM or redirect to a thank-you page here
         }
       } else {
         throw new Error(result.message || 'Donation failed');
