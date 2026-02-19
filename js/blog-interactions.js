@@ -36,8 +36,22 @@ class BlogApp {
   async loadContent() {
     // Load and render blog posts
     const blogResponse = await BlogAPI.getBlogPosts();
-    if (blogResponse.success && elements.blogContainer) {
-      this.renderBlogPosts(blogResponse.data);
+    const blogPostsDiv = document.getElementById('blogPosts');
+    if (blogPostsDiv) {
+      // Support both array and {success, data} response
+      let posts = [];
+      if (blogResponse && Array.isArray(blogResponse)) {
+        posts = blogResponse;
+      } else if (blogResponse && blogResponse.success && Array.isArray(blogResponse.data)) {
+        posts = blogResponse.data;
+      }
+      blogPostsDiv.innerHTML = '';
+      posts.forEach(post => {
+        const postDiv = document.createElement('div');
+        postDiv.className = 'bg-white p-6 rounded-lg shadow-md';
+        postDiv.innerHTML = `<h2 class="text-xl font-bold mb-2 text-[#E52D2F]">${post.title}</h2><p class="mb-4">${post.content}</p>`;
+        blogPostsDiv.appendChild(postDiv);
+      });
     }
 
     // Load and render impact stories
