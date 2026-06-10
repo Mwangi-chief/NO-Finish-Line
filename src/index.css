@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hero angled overlay */
+.angled-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #E52D2F;
+  clip-path: polygon(0 0, 80% 0, 60% 100%, 0% 100%);
+}
+
+/* Dropdown menu */
+.nav-item {
+  position: relative;
+}
+.nav-item .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #E52D2F;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  color: white;
+  padding: 12px 16px;
+  display: block;
+  transition: background-color 0.3s;
+}
+.dropdown-menu a:hover {
+  background-color: #c22525;
+}
+
+/* FAQ item */
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 15px 0;
+}
+.faq-item h3 {
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Volunteer hero */
+.hero-header {
+  background: linear-gradient(135deg, #E52D2F, #E52D2F);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.hero-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  animation: fadeIn 1s ease;
+}
+
+/* Impact cards */
+.impact-card {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 280px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  color: #333;
+}
+.impact-card:hover {
+  transform: translateY(-10px);
+}
+.impact-card h3 {
+  color: #E52D2F;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* Volunteer form */
+.form-group {
+  margin-bottom: 25px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #E52D2F;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #E52D2F;
+  outline: none;
+}
+
+/* Spinner */
+.spinner {
+  border: 4px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-top: 4px solid #E52D2F;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Registration tabs */
+.registration-tab {
+  background-color: #E52D2F;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.registration-tab.active {
+  background-color: #c22525;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.registration-tab.inactive {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.error-message {
+  color: #E52D2F;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.input-error {
+  border-color: #E52D2F !important;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Fee notice */
+.fee-notice {
+  background-color: #f8fafc;
+  border-left: 4px solid #E52D2F;
+  padding: 12px;
+  margin: 20px 0;
+}
+
+/* M-Pesa box */
+.mpesa-box {
+  border: 2px dashed #25D366;
+  background-color: #f0fff4;
+}
+
+/* Search bar */
+.search-bar {
+  background: rgba(255,255,255,0.9);
+  border-radius: 30px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+}
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  padding: 8px;
+}
+
+/* Content sections (About) */
+.content-section {
+  margin-bottom: 3rem;
+}
+.content-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #E52D2F;
+}
