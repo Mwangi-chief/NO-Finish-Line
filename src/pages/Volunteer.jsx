@@ -32,7 +32,7 @@ export default function Volunteer() {
 
   return (
     <>
-      {/* Hero Header */}
+      {/* Hero Hea */}
       <header className="hero-header">
         <div className="container mx-auto px-4">
           <h1>Become a Volunteer</h1>
