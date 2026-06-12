@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 const highlights = [
   { img: '/image1.png', title: 'No Finish Line Nairobi: A Journey of Strength', desc: 'Join us in celebrating the No Finish Line Nairobi. See the best moments.' },
-  { img: '/image2.png', title: 'Running for Health: Marathon Moments', desc: 'Discover inspiring stories from runners who participated in the marathon.' },
+  { img: '/image2.png', title: 'Running for Health: Run Moments', desc: 'Discover inspiring stories from runners who participated in the run.' },
   { img: '/image3.png', title: 'Celebrating Unity and Diversity', desc: 'Experience the joy of community at the No Finish Line Nairobi.' },
   { img: '/image4.png', title: 'Runners United: Strength in Numbers', desc: 'Runners from all walks of life join to promote wellness.' },
-  { img: '/image5.png', title: 'Family and Friends: Running Together', desc: 'Friends and families join the marathon for fun and fitness.' },
-  { img: '/image6.png', title: 'Inspiring Moments from the Marathon', desc: 'Catch the best highlights from the No Finish Line.' },
+  { img: '/image5.png', title: 'Family and Friends: Running Together', desc: 'Friends and families join the run for fun and fitness.' },
+  { img: '/image6.png', title: 'Inspiring Moments from the Run', desc: 'Catch the best highlights from the No Finish Line.' },
 ]
 
 function useCountdown(targetDate) {
@@ -30,7 +30,7 @@ function useCountdown(targetDate) {
 }
 
 export default function Home() {
-  const countdown = useCountdown('Sep 4, 2025 00:00:00')
+  const countdown = useCountdown('July 15, 2026 00:00:00')
 
   return (
     <>
@@ -55,6 +55,9 @@ export default function Home() {
           <div className="flex space-x-4">
             <Link to="/register" className="bg-yellow-500 px-6 py-3 rounded font-semibold hover:bg-yellow-600">
               Register Now
+            </Link>
+            <Link to="/contact" className="bg-yellow-500 text-white px-6 py-3 rounded-md font-bold hover:bg-yellow-600">
+              Partner Now
             </Link>
           </div>
         </div>
@@ -89,23 +92,24 @@ export default function Home() {
         <h3 className="text-3xl font-bold mb-4">About the No Finish Line Nairobi</h3>
         <p>
           NO FINISH LINE (NFL) is a unique charity sports festival combining endurance running, wellness, and community
-          activism to support children living with mental impairments. Founded in Monaco in 1999 under the patronage of
-          HSH Prince Albert II, NFL has grown into a global series of events uniting participants worldwide to raise
-          funds and awareness for vulnerable children.
+          activism to support children. Founded in Monaco in 1999 under the patronage of HSH Prince Albert II, NFL has
+          grown into a global series of events uniting participants worldwide to raise funds and awareness for vulnerable
+          children.
         </p>
         <p className="mt-4">
-          In September 2025, Nairobi will host the first NFL event in Africa, organized by Extrathion Sports Limited in
-          partnership with NO FINISH LINE International. Over 72 hours, thousands of runners, walkers, and volunteers
-          will converge at Uhuru Gardens to run, donate, and advocate for mental health—proving that every step counts.
+          In July 2026, Nairobi will host the first NFL event in Africa, organized by Extrathion Sports Limited in
+          partnership with NO FINISH LINE International to raise funds for children with mental impairments. Over 100
+          hours, thousands of runners, walkers, and volunteers will converge at Kasarani International Stadium to run,
+          donate, and advocate for mental health—proving that every step counts.
         </p>
       </section>
 
       {/* Contact */}
       <section id="contact" className="py-12 px-4 md:px-16 lg:px-24">
         <h3 className="text-3xl font-bold mb-4">Contact Us</h3>
-        <p>Email: info@nofinishlinenairobi.org</p>
-        <p>Phone: +254 112155383, +254 708061231</p>
-        <p>Address: Uhuru Gardens, Nairobi, Kenya</p>
+        <p>Email: info@nofinishlinenrb.com</p>
+        <p>Phone: +254 714606660, +254 721342872</p>
+        <p>Address: Runda, Nairobi, Kenya</p>
       </section>
     </>
   )

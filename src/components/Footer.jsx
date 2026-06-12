@@ -11,12 +11,12 @@ export default function Footer() {
             <a href="#" className="text-white hover:text-yellow-400"><i className="fab fa-facebook fa-lg"></i></a>
             <a href="#" className="text-white hover:text-yellow-400"><i className="fab fa-twitter fa-lg"></i></a>
             <a href="#" className="text-white hover:text-yellow-400"><i className="fab fa-instagram fa-lg"></i></a>
-            <a href="#" className="text-white hover:text-yellow-400"><i className="fab fa-youtube fa-lg"></i></a>
+            <a href="https://www.tiktok.com/@www.nofinishlinenrb.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow-400" aria-label="No Finish Line TikTok"><i className="fab fa-tiktok fa-lg"></i></a>
           </div>
         </div>
         <hr className="my-4 border-white/30" />
         <div className="text-center text-sm">
-          <p>&copy; 2025 No Finish Line. All rights reserved. | Designed by No Finish Line Team</p>
+          <p>&copy; 2026 No Finish Line. All rights reserved. | Designed by No Finish Line Team</p>
         </div>
       </div>
     </footer>

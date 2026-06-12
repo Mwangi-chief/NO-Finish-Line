@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <header className="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md z-50">
       <Link to="/" onClick={close}>
-        <img src="/nfl-logo-transparent.png" alt="No Finish Line Logo" className="h-16 bg-[#E52D2F] p-2" />
+        <img src="/nfl-logo-transparent.png" alt="No Finish Line Logo" className="h-28 bg-[#E52D2F] p-1" />
       </Link>
 
       <button
