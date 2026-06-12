@@ -15,8 +15,12 @@ function ScrollToHash() {
   const { hash, pathname } = useLocation()
   useEffect(() => {
     if (hash) {
-      const el = document.querySelector(hash)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
+      try {
+        const el = document.querySelector(hash)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      } catch {
+        // invalid CSS selector in hash — ignore
+      }
     } else {
       window.scrollTo(0, 0)
     }

@@ -1,43 +1,54 @@
 import { useState } from 'react'
 
-const API_BASE = 'https://nofinishnrbdjango.fly.dev'
-
 const initial = { fullName: '', email: '', phone: '', availability: '', skills: '', motivation: '' }
 
 export default function Volunteer() {
   const [form, setForm] = useState(initial)
-  const [status, setStatus] = useState(null) // 'loading' | 'success' | 'error'
-  const [message, setMessage] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }))
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
-    setStatus('loading')
-    try {
-      const res = await fetch(`${API_BASE}/volunteers/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error('Submission failed')
-      setStatus('success')
-      setMessage('Thank you for volunteering! We will be in touch soon.')
-      setForm(initial)
-    } catch (err) {
-      setStatus('error')
-      setMessage('Something went wrong. Please try again.')
-    }
+    setSubmitted(true)
+  }
+
+  if (submitted) {
+    return (
+      <>
+        <header className="hero-header">
+          <div className="container mx-auto px-4">
+            <h1>Become a Volunteer</h1>
+          </div>
+        </header>
+        <section className="py-20 px-4 text-center">
+          <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-10">
+            <i className="fas fa-heart text-[#E52D2F] text-6xl mb-6"></i>
+            <h2 className="text-2xl font-bold mb-4">Thank You, {form.fullName}!</h2>
+            <p className="text-gray-600 mb-6">
+              We've received your volunteer application and will be in touch at{' '}
+              <strong>{form.email}</strong> with next steps.
+            </p>
+            <button
+              onClick={() => { setSubmitted(false); setForm(initial) }}
+              className="bg-[#E52D2F] text-white px-6 py-3 rounded hover:bg-[#c22525]"
+            >
+              Submit Another Application
+            </button>
+          </div>
+        </section>
+      </>
+    )
   }
 
   return (
     <>
-      {/* Hero Heaeder */}
+      {/* Hero Header */}
       <header className="hero-header">
         <div className="container mx-auto px-4">
           <h1>Become a Volunteer</h1>
           <p>
-            Join us at NO FINISH LINE Nairobi 2025 and make a lasting impact on children living with mental impairments.
+            Join us at NO FINISH LINE Nairobi 2026 and make a lasting impact on children living with mental health challenges.
             Your time and skills can change lives.
           </p>
         </div>
@@ -70,13 +81,6 @@ export default function Volunteer() {
         <div className="bg-white p-10 rounded-lg shadow-md max-w-lg mx-auto">
           <h2 className="text-center text-[#E52D2F] text-3xl font-bold mb-8">Volunteer Application</h2>
 
-          {status === 'success' && (
-            <div className="bg-green-100 text-green-800 p-4 rounded mb-6">{message}</div>
-          )}
-          {status === 'error' && (
-            <div className="bg-red-100 text-red-800 p-4 rounded mb-6">{message}</div>
-          )}
-
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Full Name*</label>
@@ -94,10 +98,10 @@ export default function Volunteer() {
               <label>When are you available?*</label>
               <select value={form.availability} onChange={set('availability')} required>
                 <option value="">Select availability</option>
-                <option value="pre-event">Pre-Event (August 2025)</option>
-                <option value="day1">September 5, 2025</option>
-                <option value="day2">September 6, 2025</option>
-                <option value="day3">September 7, 2025</option>
+                <option value="pre-event">Pre-Event (June 2026)</option>
+                <option value="day1">July 15, 2026</option>
+                <option value="day2">July 16, 2026</option>
+                <option value="day3">July 17, 2026</option>
                 <option value="flexible">Flexible - Any dates</option>
               </select>
             </div>
@@ -125,10 +129,9 @@ export default function Volunteer() {
             </div>
             <button
               type="submit"
-              disabled={status === 'loading'}
-              className="w-full bg-[#ff7e33] hover:bg-[#e66a2a] text-white py-4 px-8 rounded-lg font-semibold text-lg mt-4 disabled:opacity-60"
+              className="w-full bg-[#ff7e33] hover:bg-[#e66a2a] text-white py-4 px-8 rounded-lg font-semibold text-lg mt-4"
             >
-              {status === 'loading' ? 'Submitting...' : 'Apply to Volunteer'}
+              Apply to Volunteer
             </button>
           </form>
         </div>

@@ -1,49 +1,56 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-const API_BASE = 'https://nofinishnrbdjango.fly.dev/api'
+const STATIC_PRODUCTS = [
+  {
+    id: 1,
+    name: 'No Finish Line Running Shirt',
+    description: 'Official event running shirt. Lightweight, breathable fabric.',
+    price: 1500,
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    image: '/nfl.png',
+  },
+  {
+    id: 2,
+    name: 'No Finish Line Cap',
+    description: 'Adjustable cap with embroidered No Finish Line logo.',
+    price: 800,
+    sizes: ['One Size'],
+    image: '/nfl.png',
+  },
+  {
+    id: 3,
+    name: 'Event Wristband',
+    description: 'Official event wristband for participants and supporters.',
+    price: 200,
+    sizes: ['One Size'],
+    image: '/nfl.png',
+  },
+]
+
+const deliveryFees = { pickup: 0, nairobi: 200, kiambu: 300, thika: 350 }
+const deliveryLabels = {
+  pickup: 'Event Pickup (Free)',
+  nairobi: 'Nairobi CBD (KSh 200)',
+  kiambu: 'Kiambu (KSh 300)',
+  thika: 'Thika (KSh 350)',
+}
 
 export default function Shop() {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [loadError, setLoadError] = useState(false)
   const [cart, setCart] = useState([])
   const [delivery, setDelivery] = useState('pickup')
-  const [checkoutStatus, setCheckoutStatus] = useState(null)
-
-  const deliveryFees = { pickup: 0, nairobi: 200, kiambu: 300, thika: 350 }
-  const deliveryLabels = { pickup: 'Event Pickup (Free)', nairobi: 'Nairobi CBD (KSh 200)', kiambu: 'Kiambu (KSh 300)', thika: 'Thika (KSh 350)' }
+  const [orderDone, setOrderDone] = useState(false)
 
   const subtotal = cart.reduce((s, i) => s + i.price, 0)
   const total = subtotal + (deliveryFees[delivery] || 0)
-
-  useEffect(() => {
-    fetch(`${API_BASE}/shop/products/`)
-      .then(r => r.json())
-      .then(d => { setProducts(Array.isArray(d) ? d : []); setLoading(false) })
-      .catch(() => { setLoadError(true); setLoading(false) })
-  }, [])
 
   function addToCart(product, size) {
     setCart(c => [...c, { name: product.name, price: product.price, size }])
   }
 
-  async function checkout() {
-    if (cart.length === 0) { alert('Your cart is empty!'); return }
-    setCheckoutStatus('loading')
-    try {
-      const res = await fetch(`${API_BASE}/shop/orders/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: cart, delivery: deliveryLabels[delivery] }),
-      })
-      const data = await res.json()
-      alert(`Order placed successfully! Order ID: ${data.id || 'N/A'}`)
-      setCart([])
-      setCheckoutStatus(null)
-    } catch {
-      alert('Failed to place order. Please try again later.')
-      setCheckoutStatus(null)
-    }
+  function checkout() {
+    if (cart.length === 0) return
+    setOrderDone(true)
+    setCart([])
   }
 
   return (
@@ -52,25 +59,34 @@ export default function Shop() {
       <header className="bg-[#E52D2F] text-white py-16 text-center mb-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">NO FINISH LINE Official Shop</h1>
-          <p className="text-xl">Every purchase supports children with mental impairments</p>
+          <p className="text-xl">Every purchase supports children with mental health challenges</p>
         </div>
       </header>
+
+      {orderDone && (
+        <div className="max-w-lg mx-auto mb-8 bg-green-50 border border-green-300 rounded-lg p-8 text-center">
+          <i className="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
+          <h3 className="text-xl font-bold mb-2">Order Received!</h3>
+          <p className="text-gray-600 mb-4">
+            Thank you for your order! Our team will contact you at your email with payment and delivery details.
+          </p>
+          <button onClick={() => setOrderDone(false)} className="bg-[#E52D2F] text-white px-6 py-2 rounded hover:bg-[#c22525]">
+            Continue Shopping
+          </button>
+        </div>
+      )}
 
       <main className="container mx-auto px-4 lg:grid lg:grid-cols-3 gap-8 mb-12">
         {/* Product Grid */}
         <section className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-          {loading && (
-            <div className="col-span-2 text-center text-lg text-gray-500 py-8">Loading products...</div>
-          )}
-          {loadError && (
-            <div className="col-span-2 text-center text-red-500 py-8">Failed to load products. Please try again later.</div>
-          )}
-          {!loading && !loadError && products.length === 0 && (
-            <div className="col-span-2 text-center text-gray-500 py-8">No products available.</div>
-          )}
-          {products.map((product) => (
+          {STATIC_PRODUCTS.map((product) => (
             <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
           ))}
+          {/* Coming soon card */}
+          <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center p-10 text-gray-400 text-center">
+            <i className="fas fa-shirt text-4xl mb-3"></i>
+            <p className="font-semibold">More items coming soon!</p>
+          </div>
         </section>
 
         {/* Cart Sidebar */}
@@ -118,11 +134,16 @@ export default function Shop() {
 
           <button
             onClick={checkout}
-            disabled={checkoutStatus === 'loading'}
-            className="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors disabled:opacity-60"
+            disabled={cart.length === 0}
+            className="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors disabled:opacity-40"
           >
-            {checkoutStatus === 'loading' ? 'Processing...' : 'Proceed to Checkout'}
+            Proceed to Checkout
           </button>
+          {cart.length > 0 && (
+            <p className="text-xs text-gray-500 mt-2 text-center">
+              Our team will contact you with payment details after you submit.
+            </p>
+          )}
         </aside>
       </main>
     </>
@@ -143,9 +164,10 @@ function ProductCard({ product, onAddToCart }) {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow hover:-translate-y-1 duration-300">
       <img
-        src={product.image || `https://via.placeholder.com/300x200?text=${encodeURIComponent(product.name)}`}
+        src={product.image}
         alt={product.name}
         className="w-full h-48 object-cover border-b-4 border-orange-500"
+        onError={e => { e.target.src = '/nfl.png' }}
       />
       <div className="p-5">
         <h3 className="text-xl font-bold text-blue-900 mb-2">{product.name}</h3>
