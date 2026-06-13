@@ -60,9 +60,6 @@ export default function Home() {
             >
               Register Now
             </a>
-            <a href="/contact" className="bg-yellow-500 text-white px-6 py-3 rounded-md font-bold hover:bg-yellow-600">
-              Partner Now
-            </a>
           </div>
         </div>
       </section>
