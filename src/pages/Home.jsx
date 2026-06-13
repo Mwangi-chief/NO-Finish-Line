@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 const highlights = [
   { img: '/image1.png', title: 'No Finish Line Nairobi: A Journey of Strength', desc: 'Join us in celebrating the No Finish Line Nairobi. See the best moments.' },
@@ -30,13 +29,13 @@ function useCountdown(targetDate) {
 }
 
 export default function Home() {
-  const countdown = useCountdown('July 15, 2026 00:00:00')
+  const countdown = useCountdown('July 11, 2026 00:00:00')
 
   return (
     <>
       {/* Hero */}
       <section className="relative">
-        <img src="/nfl.png" alt="No Finish Line 2025" className="w-full h-[85vh] object-cover object-center" />
+        <img src="/hero1.png" alt="No Finish Line Nairobi" className="w-full h-[85vh] object-cover object-center" />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white px-4">
           <h2 className="text-5xl font-bold mb-4">No Finish Line Nairobi</h2>
           <p className="text-xl mb-6">Keep Moving, Never Quit, Never Give up</p>
@@ -53,12 +52,17 @@ export default function Home() {
             )}
           </div>
           <div className="flex space-x-4">
-            <Link to="/register" className="bg-yellow-500 px-6 py-3 rounded font-semibold hover:bg-yellow-600">
+            <a
+              href="https://www.ticketsasa.com/events/no-finish-line-nairobi-run"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-yellow-500 px-6 py-3 rounded font-semibold hover:bg-yellow-600"
+            >
               Register Now
-            </Link>
-            <Link to="/contact" className="bg-yellow-500 text-white px-6 py-3 rounded-md font-bold hover:bg-yellow-600">
+            </a>
+            <a href="/contact" className="bg-yellow-500 text-white px-6 py-3 rounded-md font-bold hover:bg-yellow-600">
               Partner Now
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -97,7 +101,7 @@ export default function Home() {
           children.
         </p>
         <p className="mt-4">
-          In July 2026, Nairobi will host the first NFL event in Africa, organized by Extrathion Sports Limited in
+          In July 11, 2026, Nairobi will host the first NFL event in Africa, organized by Extrathion Sports Limited in
           partnership with NO FINISH LINE International to raise funds for children with mental impairments. Over 100
           hours, thousands of runners, walkers, and volunteers will converge at Kasarani International Stadium to run,
           donate, and advocate for mental health—proving that every step counts.

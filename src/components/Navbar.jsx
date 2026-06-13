@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <header className="bg-[#E52D2F] p-4 text-white flex justify-between items-center sticky top-0 shadow-md z-50">
       <Link to="/" onClick={close}>
-        <img src="/nfl-logo-transparent.png" alt="No Finish Line Logo" className="h-28 bg-[#E52D2F] p-1" />
+        <img src="/favicon.png" alt="No Finish Line Logo" className="h-36 mix-blend-screen" />
       </Link>
 
       <button
@@ -33,10 +33,15 @@ export default function Navbar() {
           </div>
         </div>
         <div className="nav-item">
-          <Link to="/register" className="hover:underline">Register</Link>
+          <a
+            href="https://www.ticketsasa.com/events/no-finish-line-nairobi-run"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >Register</a>
           <div className="dropdown-menu">
-            <Link to="/register#individualForm" onClick={close}>Individual Registration</Link>
-            <Link to="/register#groupForm" onClick={close}>Group Registration</Link>
+            <a href="https://www.ticketsasa.com/events/no-finish-line-nairobi-run" target="_blank" rel="noopener noreferrer">Individual Registration</a>
+            <a href="https://www.ticketsasa.com/events/no-finish-line-nairobi-run" target="_blank" rel="noopener noreferrer">Group Registration</a>
           </div>
         </div>
         <Link to="/volunteer" className="hover:underline">Volunteer</Link>
@@ -54,7 +59,13 @@ export default function Navbar() {
         >
           <Link to="/" className="block py-2" onClick={close}>Home</Link>
           <Link to="/about" className="block py-2" onClick={close}>About</Link>
-          <Link to="/register" className="block py-2" onClick={close}>Register</Link>
+          <a
+            href="https://www.ticketsasa.com/events/no-finish-line-nairobi-run"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block py-2"
+            onClick={close}
+          >Register</a>
           <Link to="/volunteer" className="block py-2" onClick={close}>Volunteer</Link>
           <Link to="/faq" className="block py-2" onClick={close}>FAQ</Link>
           <Link to="/blog" className="block py-2" onClick={close}>Blog</Link>
