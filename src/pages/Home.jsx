@@ -35,7 +35,7 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative">
-        <img src="/hero1.png" alt="No Finish Line Nairobi" className="w-full h-[85vh] object-cover object-center" />
+        <img src="/image1.png" alt="No Finish Line Nairobi" className="w-full h-[85vh] object-cover object-center" />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white px-4">
           <h2 className="text-5xl font-bold mb-4">No Finish Line Nairobi</h2>
           <p className="text-xl mb-6">Keep Moving, Never Quit, Never Give up</p>
